@@ -1,4 +1,4 @@
-package com.sviatkuzbyt.mafia.main
+package com.sviatkuzbyt.mafia.ui.main
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -8,7 +8,7 @@ import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sviatkuzbyt.mafia.R
-import com.sviatkuzbyt.mafia.game.activity.GameActivity
+import com.sviatkuzbyt.mafia.ui.game.activity.GameActivity
 
 class MainActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")

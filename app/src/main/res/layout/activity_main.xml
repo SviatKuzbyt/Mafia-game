@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.MainActivity">
+    tools:context=".ui.main.MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -20,7 +20,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="48dp"
         android:fontFamily="@font/kelly_slab"
-        android:text="@string/mafia"
+        android:text="@string/mafia_lable"
         android:textAppearance="@style/decorate"
         android:textColor="@color/white" />
 

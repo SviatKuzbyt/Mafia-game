@@ -1,4 +1,4 @@
-package com.sviatkuzbyt.mafia.game.setting
+package com.sviatkuzbyt.mafia.ui.game.setting
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

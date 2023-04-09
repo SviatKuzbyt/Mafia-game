@@ -1,4 +1,4 @@
-package com.sviatkuzbyt.mafia.game.activity
+package com.sviatkuzbyt.mafia.ui.game.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".game.activity.GameActivity">
+    tools:context=".ui.game.activity.GameActivity">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/closeButton"
@@ -69,7 +69,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView"
-            android:name="com.sviatkuzbyt.mafia.game.setting.SettingGameFragment"
+            android:name="com.sviatkuzbyt.mafia.ui.game.setting.SettingGameFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_setting_game"

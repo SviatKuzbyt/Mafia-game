@@ -1,4 +1,4 @@
-package com.sviatkuzbyt.mafia.main
+package com.sviatkuzbyt.mafia.ui.main
 
 import android.content.Context
 import android.view.LayoutInflater
