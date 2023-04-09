@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="decorate">
+        <item name="android:fontFamily">@font/kelly_slab</item>
+        <item name="android:textSize">48sp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="white_bold">
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textColor">?colorOnPrimary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="basic">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">?colorOnSecondary</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+</resources>
