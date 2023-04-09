@@ -4,6 +4,7 @@
         <item name="android:fontFamily">@font/kelly_slab</item>
         <item name="android:textSize">48sp</item>
         <item name="android:textAlignment">center</item>
+        <item name="android:textColor">?colorOnSecondary</item>
     </style>
 
     <style name="white_bold">
@@ -15,6 +16,11 @@
 
     <style name="basic">
         <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">?colorOnSecondary</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="basic_bold">
+        <item name="android:fontFamily">@font/roboto_bold</item>
         <item name="android:textColor">?colorOnSecondary</item>
         <item name="android:textSize">16sp</item>
     </style>

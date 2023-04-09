@@ -5,4 +5,9 @@
     <string name="continue_game">Продовжити гру</string>
     <string name="rules">Правила</string>
     <string name="settings">Налаштування</string>
+    <string name="help">Допомога</string>
+    <string name="close">Закрити</string>
+    <string name="back">Назад</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
