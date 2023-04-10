@@ -1,15 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.game.setting.SettingGameFragment">
+    tools:context=".ui.game.setting.SettingGameFragment"
+    android:fillViewport="true"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:background="@drawable/container_background"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/basic_bold"
+                android:text="@string/roles"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rolesSettingRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:background="@drawable/container_background"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/basic_bold"
+                android:text="@string/players"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/playersSettingRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="ghj hjk hjklyui yhjm yui jhnjmkl; oiuh oiuyh ppoiujm"
-        android:textSize="128sp"/>
-
-</FrameLayout>
+        android:id="@+id/sumRoles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/basic_bold"
+        android:layout_marginVertical="16dp"/>
+</LinearLayout>

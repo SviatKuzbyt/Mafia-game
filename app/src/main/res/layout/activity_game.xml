@@ -10,6 +10,8 @@
         android:id="@+id/closeButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/close_ic"
         android:contentDescription="@string/close"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,6 +21,8 @@
         android:id="@+id/helpButton"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/rules_gray_ic"
         android:contentDescription="@string/help"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,21 +62,16 @@
         app:layout_constraintStart_toStartOf="parent"
         android:contentDescription="@string/back"/>
 
-    <ScrollView
-        android:layout_width="0dp"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="com.sviatkuzbyt.mafia.ui.game.setting.SettingGameFragment"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
+        android:layout_margin="16dp"
         app:layout_constraintBottom_toTopOf="@+id/nextButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/closeButton">
+        app:layout_constraintTop_toBottomOf="@+id/closeButton"
+        tools:layout="@layout/fragment_setting_game" />
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentContainerView"
-            android:name="com.sviatkuzbyt.mafia.ui.game.setting.SettingGameFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout="@layout/fragment_setting_game"
-            android:layout_marginHorizontal="16dp"/>
-    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,4 +16,9 @@
     <string name="doctor">Лікар</string>
     <string name="peaceful">Мирний житель</string>
     <string name="player">Гравець</string>
+    <string name="reduce">Зменшити кількість</string>
+    <string name="increase">Збільшити кількість</string>
+    <string name="roles">Ролі</string>
+    <string name="players">Гравці</string>
+    <string name="players_count">Кількість гравців:</string>
 </resources>
