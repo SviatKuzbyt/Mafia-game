@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import com.sviatkuzbyt.mafia.R
 import com.sviatkuzbyt.mafia.data.game.PlayerData
 import com.sviatkuzbyt.mafia.ui.game.InformationFragment
+import com.sviatkuzbyt.mafia.ui.game.roles.RolesFragment
 import com.sviatkuzbyt.mafia.ui.game.setting.SettingGameFragment
 
 class GameViewModel(private val application: Application): AndroidViewModel(application) {
@@ -16,7 +17,7 @@ class GameViewModel(private val application: Application): AndroidViewModel(appl
     val isVisibleBackButton = MutableLiveData<Boolean>()
     val textOnNextButton = MutableLiveData<String>()
     val currentFragment = MutableLiveData<Fragment>()
-    var gameList = arrayOf<PlayerData>()
+    var gameArray = arrayOf<PlayerData>()
 
     init {
         setSettingGameStep()
@@ -42,7 +43,10 @@ class GameViewModel(private val application: Application): AndroidViewModel(appl
     }
 
     fun setGetCardStep(){
-        Log.v("app test", "all work good!")
+        toolBarLabel.value = application.getString(R.string.roles)
+        isVisibleBackButton.value = true
+        currentFragment.value = RolesFragment()
+        textOnNextButton.value = application.getString(R.string.next)
     }
     fun finishGame(){}
 }

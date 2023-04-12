@@ -5,3 +5,6 @@ data class PlayerData(
     val role: RoleType,
     var isAlive: Boolean
 )
+
+
+

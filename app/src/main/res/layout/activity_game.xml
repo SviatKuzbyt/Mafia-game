@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.game.activity.GameActivity">
+    tools:context=".ui.game.activity.GameActivity"
+    android:animateLayoutChanges="true">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/closeButton"

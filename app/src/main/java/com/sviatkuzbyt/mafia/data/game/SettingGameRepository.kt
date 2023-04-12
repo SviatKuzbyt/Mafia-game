@@ -8,7 +8,7 @@ class SettingGameRepository(private val context: Context) {
 
     private val rolesArray = arrayOf(
         Roles(context.getString(R.string.mafia), R.drawable.gun_ic, 1, 5, RoleType.Mafia),
-        Roles(context.getString(R.string.commissioner), R.drawable.hat_ic, 1, 1, RoleType.Commissar),
+        Roles(context.getString(R.string.commissar), R.drawable.hat_ic, 1, 1, RoleType.Commissar),
         Roles(context.getString(R.string.doctor), R.drawable.plus_ic, 0, 1, RoleType.Doctor),
         Roles(context.getString(R.string.peaceful), R.drawable.people_icon, 3, 10, RoleType.Peaceful),
         Roles(context.getString(R.string.putana), R.drawable.lips_ic, 0, 1, RoleType.Putana),
@@ -45,7 +45,6 @@ class SettingGameRepository(private val context: Context) {
             )
         }
     }
-
 }
 
 data class Roles(

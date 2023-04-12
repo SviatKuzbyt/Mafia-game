@@ -45,8 +45,15 @@ class InformationFragment : Fragment(), GameInterface {
         }
     }
 
-    override fun mainButtonClick() {
+    override fun nextButtonClick() {
         if (arguments?.getBoolean("isFinish") == true) activityViewModel.finishGame()
         else activityViewModel.setGetCardStep()
+    }
+
+    override fun backButtonClick() {}
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

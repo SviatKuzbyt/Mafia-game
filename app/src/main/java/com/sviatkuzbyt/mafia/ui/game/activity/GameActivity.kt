@@ -50,7 +50,11 @@ class GameActivity : AppCompatActivity() {
         }
 
         nextButton.setOnClickListener {
-            currentFragment?.mainButtonClick()
+            currentFragment?.nextButtonClick()
+        }
+
+        backButton.setOnClickListener {
+            currentFragment?.backButtonClick()
         }
     }
 }

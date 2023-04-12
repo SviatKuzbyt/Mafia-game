@@ -72,9 +72,11 @@ class SettingGameFragment : Fragment(), GameInterface {
         _binding = null
     }
 
-    override fun mainButtonClick() {
+    override fun nextButtonClick() {
         val gameList = viewModel.createGameList()
-        activityViewModel.gameList = gameList
+        activityViewModel.gameArray = gameList
         activityViewModel.setStartGameStep()
     }
+
+    override fun backButtonClick() {}
 }
