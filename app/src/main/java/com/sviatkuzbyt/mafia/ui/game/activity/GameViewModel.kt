@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.sviatkuzbyt.mafia.R
 import com.sviatkuzbyt.mafia.data.game.PlayerData
+import com.sviatkuzbyt.mafia.ui.game.InformationFragment
 import com.sviatkuzbyt.mafia.ui.game.setting.SettingGameFragment
 
 class GameViewModel(private val application: Application): AndroidViewModel(application) {
@@ -29,6 +30,19 @@ class GameViewModel(private val application: Application): AndroidViewModel(appl
     }
 
     fun setStartGameStep(){
-        Log.v("app test", "all work good! Size of gameList: ${gameList.size}")
+        toolBarLabel.value = ""
+        currentFragment.value = InformationFragment.newInstance(
+            application.getString(R.string.start_game_label),
+            application.getString(R.string.start_game_information),
+            "🏁",
+            false
+        )
+        textOnNextButton.value = application.getString(R.string.next)
+
     }
+
+    fun setGetCardStep(){
+        Log.v("app test", "all work good!")
+    }
+    fun finishGame(){}
 }

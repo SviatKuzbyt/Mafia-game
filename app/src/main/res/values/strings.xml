@@ -10,7 +10,7 @@
     <string name="back">Назад</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    
+
     <string name="mafia">Мафія</string>
     <string name="commissioner">Комісар</string>
     <string name="doctor">Лікар</string>
@@ -26,4 +26,8 @@
     <string name="lift">Ман’як</string>
     <string name="immortal">Бесмертний</string>
     <string name="setting_game">Налаштування гри</string>
+    <string name="start_game_label">Гра починається</string>
+    <string name="start_game_information">Місто засинає і ведучий роздає ролі (натиснить "Далі")</string>
+    <string name="no_help">Не має в чому допомогти</string>
+    <string name="next">Далі</string>
 </resources>
