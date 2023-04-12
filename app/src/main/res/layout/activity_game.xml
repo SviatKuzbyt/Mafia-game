@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textToolbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/closeButton"
@@ -63,8 +63,7 @@
         android:contentDescription="@string/back"/>
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
-        android:name="com.sviatkuzbyt.mafia.ui.game.setting.SettingGameFragment"
+        android:id="@+id/FragmentContainerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="16dp"

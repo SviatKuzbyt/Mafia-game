@@ -1,11 +1,10 @@
-package com.sviatkuzbyt.mafia.ui.game.elements
+package com.sviatkuzbyt.mafia.ui.game.elements.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
 import com.sviatkuzbyt.mafia.R
 import com.sviatkuzbyt.mafia.ui.game.setting.SettingGameViewModel
@@ -31,8 +30,10 @@ class PlayersSettingAdapter(private val dataSet: MutableList<String>, private va
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.editTextPlayers.setText(dataSet[position])
 
-        viewHolder.editTextPlayers.addTextChangedListener {
-            viewModel.changePlayerName(position, viewHolder.editTextPlayers.text.toString())
+        viewHolder.editTextPlayers.setOnEditorActionListener { view, _, _ ->
+            viewModel.changePlayerName(position, view.text.toString())
+            dataSet[position] = view.text.toString()
+            false
         }
 
         viewHolder.editButtonPlayers.setOnClickListener {
@@ -45,9 +46,12 @@ class PlayersSettingAdapter(private val dataSet: MutableList<String>, private va
         notifyItemInserted(dataSet.size - 1)
     }
 
-    fun removePlayer(){
-        notifyItemRemoved(dataSet.size - 1)
-        dataSet.removeLast()
+    fun removePlayer() {
+        if (dataSet.isNotEmpty()) {
+            val removeIndex = dataSet.size-1
+            dataSet.removeAt(removeIndex)
+            notifyItemRemoved(removeIndex)
+        }
     }
 
     fun addAll(list: MutableList<String>){

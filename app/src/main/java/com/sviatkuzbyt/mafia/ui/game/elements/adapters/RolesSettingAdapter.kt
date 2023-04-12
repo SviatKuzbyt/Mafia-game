@@ -1,4 +1,4 @@
-package com.sviatkuzbyt.mafia.ui.game.elements
+package com.sviatkuzbyt.mafia.ui.game.elements.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +11,7 @@ import com.sviatkuzbyt.mafia.R
 import com.sviatkuzbyt.mafia.data.game.Roles
 import com.sviatkuzbyt.mafia.ui.game.setting.SettingGameViewModel
 
-class RolesSettingAdapter(private val dataSet: Array<Roles>, private val viewModel: SettingGameViewModel) :
+class RolesSettingAdapter(private var dataSet: Array<Roles>, private val viewModel: SettingGameViewModel) :
     RecyclerView.Adapter<RolesSettingAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -41,22 +41,27 @@ class RolesSettingAdapter(private val dataSet: Array<Roles>, private val viewMod
         viewHolder.count.text = dataSet[position].count.toString()
 
         viewHolder.increaseButton.setOnClickListener {
-            changeRolesCount(1, position, viewHolder.count)
+            viewModel.changeRole(position, 1)
+
         }
 
         viewHolder.reduceButton.setOnClickListener {
-            changeRolesCount( -1, position, viewHolder.count)
+            viewModel.changeRole(position, -1)
+
         }
     }
 
-    private fun changeRolesCount(delta: Int, position: Int, textView: TextView){
-        val targetCount = dataSet[position].count + delta
-        if(targetCount <= dataSet[position].max && targetCount >= dataSet[position].min){
-            viewModel.changeRole(position, delta)
-            textView.text = targetCount.toString()
+    fun addAll(list: Array<Roles>){
+        if(dataSet.isNotEmpty()){
+            notifyItemRangeRemoved(0, dataSet.size)
         }
 
+        dataSet = list
+        notifyItemRangeInserted(0, dataSet.size)
     }
-
     override fun getItemCount() = dataSet.size
+    fun changeCount(count: Int, position: Int) {
+        dataSet[position].count = count
+        notifyItemChanged(position)
+    }
 }

@@ -5,4 +5,8 @@ sealed class RoleType {
     object Commissar: RoleType()
     object Doctor: RoleType()
     object Peaceful: RoleType()
+    object Putana: RoleType()
+    object Don: RoleType()
+    object Lift: RoleType()
+    object Immortal: RoleType()
 }

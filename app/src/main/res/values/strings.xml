@@ -21,4 +21,9 @@
     <string name="roles">Ролі</string>
     <string name="players">Гравці</string>
     <string name="players_count">Кількість гравців:</string>
+    <string name="don">Дон</string>
+    <string name="putana">Путана</string>
+    <string name="lift">Ман’як</string>
+    <string name="immortal">Бесмертний</string>
+    <string name="setting_game">Налаштування гри</string>
 </resources>

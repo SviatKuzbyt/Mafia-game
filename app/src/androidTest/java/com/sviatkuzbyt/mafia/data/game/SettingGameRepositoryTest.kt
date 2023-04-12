@@ -15,18 +15,16 @@ internal class SettingGameRepositoryTest{
     }
 
     @Test
-    fun checkGeneralWork(){
-        settingGameRepository.changeRoleCount(0, 1)
-        settingGameRepository.playersList[2] = "Sviat"
+    fun checkGenerateGameList(){
+        val rolesList = settingGameRepository.getBasicRolesArray()
+        val playerList = settingGameRepository.getBasicPlayersList()
+        val resultList = settingGameRepository.getGameList(rolesList, playerList)
 
-        println(settingGameRepository.rolesArray.toList())
-        println(settingGameRepository.playersCount)
-        println(settingGameRepository.playersList)
+        var resultOutput = ""
+        resultList.forEach {
+            resultOutput += it.toString()
+        }
 
-        settingGameRepository.changeRoleCount(3, -1)
-
-        println(settingGameRepository.rolesArray.toList())
-        println(settingGameRepository.playersCount)
-        println(settingGameRepository.playersList)
+        println(resultOutput)
     }
 }

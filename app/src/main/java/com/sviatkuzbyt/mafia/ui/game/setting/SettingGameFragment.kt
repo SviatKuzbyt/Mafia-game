@@ -6,17 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sviatkuzbyt.mafia.databinding.FragmentSettingGameBinding
-import com.sviatkuzbyt.mafia.ui.game.elements.PlayersSettingAdapter
-import com.sviatkuzbyt.mafia.ui.game.elements.RolesSettingAdapter
+import com.sviatkuzbyt.mafia.ui.game.activity.GameViewModel
+import com.sviatkuzbyt.mafia.ui.game.elements.GameInterface
+import com.sviatkuzbyt.mafia.ui.game.elements.adapters.PlayersSettingAdapter
+import com.sviatkuzbyt.mafia.ui.game.elements.adapters.RolesSettingAdapter
 
-class SettingGameFragment : Fragment() {
+class SettingGameFragment : Fragment(), GameInterface {
     private var _binding: FragmentSettingGameBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModels<SettingGameViewModel>()
-    lateinit var playersSettingAdapter: PlayersSettingAdapter
+    private val activityViewModel by activityViewModels<GameViewModel>()
+    private lateinit var playersSettingAdapter: PlayersSettingAdapter
+    private lateinit var rolesSettingAdapter: RolesSettingAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,8 +35,14 @@ class SettingGameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.rolesSettingRecycler.layoutManager = LinearLayoutManager(activity)
+        rolesSettingAdapter = RolesSettingAdapter(arrayOf(), viewModel)
+        binding.rolesSettingRecycler.adapter = rolesSettingAdapter
         viewModel.rolesArray.observe(viewLifecycleOwner){
-            binding.rolesSettingRecycler.adapter = RolesSettingAdapter(it, viewModel)
+            when(viewModel.rolesChangeMode){
+                RecycleChangeMode.LoadAll -> rolesSettingAdapter.addAll(it)
+                else -> rolesSettingAdapter.changeCount(viewModel.getCount(), viewModel.getPosition())
+            }
+            viewModel.rolesChangeMode = RecycleChangeMode.LoadAll
         }
 
         binding.playersSettingRecycler.layoutManager = LinearLayoutManager(activity)
@@ -39,12 +50,12 @@ class SettingGameFragment : Fragment() {
         binding.playersSettingRecycler.adapter = playersSettingAdapter
 
         viewModel.playersList.observe(viewLifecycleOwner){
-            when(viewModel.playersListSettingChange){
-                PlayersListSettingChange.LoadAll -> playersSettingAdapter.addAll(it)
-                PlayersListSettingChange.AddItem -> playersSettingAdapter.addPlayer(it.last())
-                PlayersListSettingChange.RemoveItem -> playersSettingAdapter.removePlayer()
+            when(viewModel.playersChangeMode){
+                RecycleChangeMode.LoadAll -> playersSettingAdapter.addAll(it)
+                RecycleChangeMode.AddItem -> playersSettingAdapter.addPlayer(it.last())
+                else -> playersSettingAdapter.removePlayer()
             }
-            viewModel.playersListSettingChange = PlayersListSettingChange.LoadAll
+            viewModel.playersChangeMode = RecycleChangeMode.LoadAll
         }
 
         viewModel.playersCount.observe(viewLifecycleOwner){
@@ -61,4 +72,9 @@ class SettingGameFragment : Fragment() {
         _binding = null
     }
 
+    override fun mainButtonClick() {
+        val gameList = viewModel.createGameList()
+        activityViewModel.gameList = gameList
+        activityViewModel.setStartGameStep()
+    }
 }
