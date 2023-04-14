@@ -10,7 +10,7 @@ class SettingGameRepository(private val context: Context) {
         Roles(context.getString(R.string.mafia), R.drawable.gun_ic, 1, 5, RoleType.Mafia),
         Roles(context.getString(R.string.commissar), R.drawable.hat_ic, 1, 1, RoleType.Commissar),
         Roles(context.getString(R.string.doctor), R.drawable.plus_ic, 0, 1, RoleType.Doctor),
-        Roles(context.getString(R.string.peaceful), R.drawable.people_icon, 3, 10, RoleType.Peaceful),
+        Roles(context.getString(R.string.peaceful), R.drawable.people_ic, 3, 10, RoleType.Peaceful),
         Roles(context.getString(R.string.putana), R.drawable.lips_ic, 0, 1, RoleType.Putana),
         Roles(context.getString(R.string.don), R.drawable.red_hat_ic, 0, 1, RoleType.Don),
         Roles(context.getString(R.string.lift), R.drawable.knife_ic, 0, 1, RoleType.Lift),
@@ -37,13 +37,22 @@ class SettingGameRepository(private val context: Context) {
         return Array(_playerList.size){
             val role = roles.random()
             roles.remove(role)
-
-            PlayerData(
-                _playerList[it],
-                role,
-                true
-            )
+            PlayerData(it, _playerList[it], role, getRoleName(role))
         }
+    }
+
+    private fun getRoleName(roleType: RoleType): String{
+        val roleId = when(roleType){
+            RoleType.Peaceful -> R.string.peaceful
+            RoleType.Mafia -> R.string.mafia
+            RoleType.Commissar -> R.string.commissar
+            RoleType.Doctor -> R.string.doctor
+            RoleType.Don -> R.string.don
+            RoleType.Putana -> R.string.putana
+            RoleType.Lift -> R.string.lift
+            RoleType.Immortal -> R.string.immortal
+        }
+        return context.getString(roleId)
     }
 }
 

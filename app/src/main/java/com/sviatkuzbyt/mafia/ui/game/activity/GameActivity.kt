@@ -56,5 +56,9 @@ class GameActivity : AppCompatActivity() {
         backButton.setOnClickListener {
             currentFragment?.backButtonClick()
         }
+
+        viewModel.closeActivity.observe(this){
+            if (it) finish()
+        }
     }
 }

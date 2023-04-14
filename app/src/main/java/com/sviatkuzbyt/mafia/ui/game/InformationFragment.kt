@@ -46,7 +46,7 @@ class InformationFragment : Fragment(), GameInterface {
     }
 
     override fun nextButtonClick() {
-        if (arguments?.getBoolean("isFinish") == true) activityViewModel.finishGame()
+        if (arguments?.getBoolean("isFinish") == true) activityViewModel.closeActivity()
         else activityViewModel.setGetCardStep()
     }
 

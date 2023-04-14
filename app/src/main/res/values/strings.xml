@@ -27,7 +27,15 @@
     <string name="immortal">Бесмертний</string>
     <string name="setting_game">Налаштування гри</string>
     <string name="start_game_label">Гра починається</string>
-    <string name="start_game_information">Місто засинає і ведучий роздає ролі (натиснить "Далі")</string>
+    <string name="start_game_information">Місто засинає і ведучий роздає ролі</string>
     <string name="no_help">Не має в чому допомогти</string>
     <string name="next">Далі</string>
+    <string name="see_role">Показати картку гравця</string>
+    <string name="remove">Усунути</string>
+    <string name="player_panel">Панель гравців</string>
+    <string name="peaceful_win">Перемогли <b>мирні</b></string>
+    <string name="mafia_win">Перемогла <b>мафія</b></string>
+    <string name="lift_win">Переміг <b>маніяк</b></string>
+    <string name="end_game">Кінець гри</string>
+
 </resources>

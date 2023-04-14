@@ -1,19 +1,16 @@
 package com.sviatkuzbyt.mafia.ui.game.roles
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
-import com.sviatkuzbyt.mafia.R
-import com.sviatkuzbyt.mafia.databinding.FragmentInformationBinding
 import com.sviatkuzbyt.mafia.databinding.FragmentRolesBinding
-import com.sviatkuzbyt.mafia.databinding.FragmentSettingGameBinding
+import CardAnimation
 import com.sviatkuzbyt.mafia.ui.game.activity.GameViewModel
+import com.sviatkuzbyt.mafia.ui.game.elements.CardGestureListener
 import com.sviatkuzbyt.mafia.ui.game.elements.GameInterface
-
 
 class RolesFragment : Fragment(), GameInterface {
 
@@ -25,27 +22,31 @@ class RolesFragment : Fragment(), GameInterface {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentRolesBinding.inflate(inflater, container, false)
         viewModel =
             ViewModelProvider(this,
-                RolesViewModelFactory(requireActivity().application, activityViewModel.gameArray)
+                RolesViewModelFactory(requireActivity().application, activityViewModel.gameArray, activityViewModel)
             )[RolesViewModel::class.java]
         return binding.root
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val displayMetrics = resources.displayMetrics
+        val screenWidth = displayMetrics.widthPixels
+        val cardAnimation = CardAnimation(binding, screenWidth.toFloat())
+
         viewModel.player.observe(viewLifecycleOwner){
-            binding.playerTextRole.text = it
+            cardAnimation.playAnimation(it, viewModel.isNextAnimation)
         }
 
-        viewModel.role.observe(viewLifecycleOwner){
-            binding.roleText.text = it
-        }
-
-        viewModel.image.observe(viewLifecycleOwner){
-            binding.roleImage.setImageDrawable(it)
+        val gestureDetector = GestureDetector(context, CardGestureListener(viewModel))
+        view.setOnTouchListener { _, event ->
+            gestureDetector.onTouchEvent(event)
+            true
         }
     }
 
