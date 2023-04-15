@@ -1,4 +1,4 @@
-package com.sviatkuzbyt.mafia.ui.game.elements
+package com.sviatkuzbyt.mafia.ui.elements
 
 interface GameInterface {
     fun nextButtonClick()

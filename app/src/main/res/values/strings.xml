@@ -30,7 +30,7 @@
     <string name="start_game_information">Місто засинає і ведучий роздає ролі</string>
     <string name="no_help">Не має в чому допомогти</string>
     <string name="next">Далі</string>
-    <string name="see_role">Показати картку гравця</string>
+    <string name="see_role">Перегляд ролі гравця</string>
     <string name="remove">Усунути</string>
     <string name="player_panel">Панель гравців</string>
     <string name="peaceful_win">Перемогли <b>мирні</b></string>
@@ -38,5 +38,11 @@
     <string name="lift_win">Переміг <b>маніяк</b></string>
     <string name="end_game">Кінець гри</string>
     <string name="no_save">Не має збереженої гри</string>
+    <string name="exit_game_label">Вийти з гри?</string>
+    <string name="exit_game_description_settings">Всі налаштування гри збережуться</string>
+    <string name="exit_game_description_roles">На цьому етапі гра не збережеться, і ви не зможете до неї повернутися</string>
+    <string name="exit_game_description_game">Гра збережеться (живі гравці) і ви зможете повернутися до неї пізніше</string>
+    <string name="yes">Так</string>
+    <string name="no">Ні</string>
 
 </resources>

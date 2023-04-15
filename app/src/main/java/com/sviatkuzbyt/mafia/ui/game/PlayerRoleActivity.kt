@@ -8,7 +8,7 @@ import android.widget.TextView
 import com.sviatkuzbyt.mafia.R
 import com.sviatkuzbyt.mafia.data.game.loadImage
 
-class PlayerLoreActivity : AppCompatActivity() {
+class PlayerRoleActivity : AppCompatActivity() {
     private val close: Button by lazy { findViewById(R.id.closeButton) }
     private val playerTextRole: TextView by lazy { findViewById(R.id.playerTextRole) }
     private val roleText: TextView by lazy { findViewById(R.id.roleText) }
@@ -16,7 +16,7 @@ class PlayerLoreActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_player_lore)
+        setContentView(R.layout.activity_player_role)
 
         roleText.text = intent.getStringExtra("roleText")
         playerTextRole.text = intent.getStringExtra("player")

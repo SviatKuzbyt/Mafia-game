@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.sviatkuzbyt.mafia.databinding.FragmentInformationBinding
 import com.sviatkuzbyt.mafia.ui.game.activity.GameViewModel
-import com.sviatkuzbyt.mafia.ui.game.elements.GameInterface
+import com.sviatkuzbyt.mafia.ui.elements.GameInterface
 
 
 class InformationFragment : Fragment(), GameInterface {

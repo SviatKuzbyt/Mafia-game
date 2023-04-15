@@ -1,3 +1,5 @@
+package com.sviatkuzbyt.mafia.ui.elements
+
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet

@@ -1,4 +1,4 @@
-package com.sviatkuzbyt.mafia.ui.game.elements.adapters
+package com.sviatkuzbyt.mafia.ui.elements.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -12,7 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sviatkuzbyt.mafia.R
 import com.sviatkuzbyt.mafia.data.game.PlayerPanelData
-import com.sviatkuzbyt.mafia.ui.game.PlayerLoreActivity
+import com.sviatkuzbyt.mafia.ui.game.PlayerRoleActivity
 import com.sviatkuzbyt.mafia.ui.game.playerpanel.PlayerPanelViewModel
 
 class PlayerPanelAdapter(private var dataSet: MutableList<PlayerPanelData>,
@@ -81,7 +81,7 @@ class PlayerPanelAdapter(private var dataSet: MutableList<PlayerPanelData>,
     }
 
     private fun seeRole(position: Int){
-        val intent = Intent(context, PlayerLoreActivity::class.java).apply {
+        val intent = Intent(context, PlayerRoleActivity::class.java).apply {
             putExtra("roleText", dataSet[position].roleName)
             putExtra("player", dataSet[position].name)
             putExtra("roleType", dataSet[position].typeRole)

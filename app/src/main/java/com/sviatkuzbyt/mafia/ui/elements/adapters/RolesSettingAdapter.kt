@@ -1,4 +1,4 @@
-package com.sviatkuzbyt.mafia.ui.game.elements.adapters
+package com.sviatkuzbyt.mafia.ui.elements.adapters
 
 import android.view.LayoutInflater
 import android.view.View

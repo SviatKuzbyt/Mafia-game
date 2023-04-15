@@ -10,8 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sviatkuzbyt.mafia.databinding.FragmentPlayerPanelBinding
 import com.sviatkuzbyt.mafia.ui.game.activity.GameViewModel
-import com.sviatkuzbyt.mafia.ui.game.elements.GameInterface
-import com.sviatkuzbyt.mafia.ui.game.elements.adapters.PlayerPanelAdapter
+import com.sviatkuzbyt.mafia.ui.elements.GameInterface
+import com.sviatkuzbyt.mafia.ui.elements.adapters.PlayerPanelAdapter
 
 class PlayerPanelFragment : Fragment(), GameInterface {
 

@@ -7,10 +7,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import com.sviatkuzbyt.mafia.databinding.FragmentRolesBinding
-import CardAnimation
+import com.sviatkuzbyt.mafia.ui.elements.CardAnimation
 import com.sviatkuzbyt.mafia.ui.game.activity.GameViewModel
-import com.sviatkuzbyt.mafia.ui.game.elements.CardGestureListener
-import com.sviatkuzbyt.mafia.ui.game.elements.GameInterface
+import com.sviatkuzbyt.mafia.ui.elements.CardGestureListener
+import com.sviatkuzbyt.mafia.ui.elements.GameInterface
 
 class RolesFragment : Fragment(), GameInterface {
 
