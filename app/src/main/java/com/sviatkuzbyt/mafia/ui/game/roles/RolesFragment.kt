@@ -25,7 +25,8 @@ class RolesFragment : Fragment(), GameInterface {
     ): View {
         _binding = FragmentRolesBinding.inflate(inflater, container, false)
         viewModel =
-            ViewModelProvider(this,
+            ViewModelProvider(
+                requireActivity(),
                 RolesViewModelFactory(requireActivity().application, activityViewModel.gameArray, activityViewModel)
             )[RolesViewModel::class.java]
         return binding.root

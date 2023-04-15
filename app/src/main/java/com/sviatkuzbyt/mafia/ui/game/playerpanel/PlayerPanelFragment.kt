@@ -27,7 +27,7 @@ class PlayerPanelFragment : Fragment(), GameInterface {
     ): View {
         _binding = FragmentPlayerPanelBinding.inflate(inflater, container, false)
         viewModel =
-            ViewModelProvider(this,
+            ViewModelProvider(requireActivity(),
                 PlayerPanelViewModelFactory(requireActivity().application, activityViewModel.gameArray, activityViewModel)
             )[PlayerPanelViewModel::class.java]
         return binding.root
@@ -36,7 +36,7 @@ class PlayerPanelFragment : Fragment(), GameInterface {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.playerPanelRecycler.layoutManager = LinearLayoutManager(activity)
-        adapter = PlayerPanelAdapter(mutableListOf(), viewModel)
+        adapter = PlayerPanelAdapter(mutableListOf(), viewModel, requireContext())
         binding.playerPanelRecycler.adapter = adapter
 
         viewModel.playerList.observe(viewLifecycleOwner){

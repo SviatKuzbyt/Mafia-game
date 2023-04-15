@@ -11,33 +11,12 @@ class RolesRepository(private val context: Context) {
             CardRole(
                 gameArray[it].name,
                 gameArray[it].roleName,
-                loadImage(gameArray[it].role)
+                loadImage(gameArray[it].role, context),
             )
         }
     }
 
-    private fun loadImage(roleType: RoleType): Drawable?{
-        return try {
-            val roleName = when(roleType){
-                RoleType.Peaceful -> "peaceful"
-                RoleType.Mafia -> "mafia"
-                RoleType.Commissar -> "commissar"
-                RoleType.Doctor -> "doctor"
-                RoleType.Don -> "don"
-                RoleType.Putana -> "putana"
-                RoleType.Lift -> "lift"
-                RoleType.Immortal -> "immortal"
-            }
 
-            val inputStream = context.assets.open("basic_cards/$roleName.svg")
-            val svgDrawable = SVG.getFromInputStream(inputStream).renderToPicture()
-            inputStream.close()
-            PictureDrawable(svgDrawable)
-        } catch (e: Exception){
-            null
-        }
-
-    }
 }
 
 data class CardRole(

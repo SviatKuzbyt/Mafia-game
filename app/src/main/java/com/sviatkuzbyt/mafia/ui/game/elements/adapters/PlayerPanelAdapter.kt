@@ -1,6 +1,8 @@
 package com.sviatkuzbyt.mafia.ui.game.elements.adapters
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +12,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sviatkuzbyt.mafia.R
 import com.sviatkuzbyt.mafia.data.game.PlayerPanelData
+import com.sviatkuzbyt.mafia.ui.game.PlayerLoreActivity
 import com.sviatkuzbyt.mafia.ui.game.playerpanel.PlayerPanelViewModel
 
-class PlayerPanelAdapter(private var dataSet: MutableList<PlayerPanelData>, private val viewModel: PlayerPanelViewModel) :
+class PlayerPanelAdapter(private var dataSet: MutableList<PlayerPanelData>,
+                         private val viewModel: PlayerPanelViewModel,
+                         private val context: Context) :
     RecyclerView.Adapter<PlayerPanelAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -48,6 +53,10 @@ class PlayerPanelAdapter(private var dataSet: MutableList<PlayerPanelData>, priv
             dataSet[position].isSelected = !dataSet[position].isSelected
             notifyItemChanged(position)
         }
+
+        viewHolder.seeRoleButton.setOnClickListener {
+            seeRole(position)
+        }
     }
 
     private fun setBackground(itemView: View, resource: Int){
@@ -69,6 +78,15 @@ class PlayerPanelAdapter(private var dataSet: MutableList<PlayerPanelData>, priv
 
     fun addPlayer(){
         notifyItemInserted(dataSet.size)
+    }
+
+    private fun seeRole(position: Int){
+        val intent = Intent(context, PlayerLoreActivity::class.java).apply {
+            putExtra("roleText", dataSet[position].roleName)
+            putExtra("player", dataSet[position].name)
+            putExtra("roleType", dataSet[position].typeRole)
+        }
+        context.startActivity(intent)
     }
     override fun getItemCount() = dataSet.size
 }

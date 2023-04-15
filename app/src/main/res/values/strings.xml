@@ -37,5 +37,6 @@
     <string name="mafia_win">Перемогла <b>мафія</b></string>
     <string name="lift_win">Переміг <b>маніяк</b></string>
     <string name="end_game">Кінець гри</string>
+    <string name="no_save">Не має збереженої гри</string>
 
 </resources>

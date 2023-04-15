@@ -26,22 +26,23 @@ class PlayerPanelRepository(private val gameArray: Array<PlayerData>, private va
                     it.name,
                     dataAboutRole.icon,
                     it.role,
-                    dataAboutRole.color
+                    dataAboutRole.color,
+                    it.roleName
                 ))
             }
         }
         return playerPanelList
     }
 
-    private fun getDataAboutRole(roleType: RoleType): DataAboutRole = when(roleType){
-        RoleType.Peaceful -> DataAboutRole(R.drawable.people_ic, ColorRole.Red)
-        RoleType.Mafia -> DataAboutRole(R.drawable.gun_ic, ColorRole.Black)
-        RoleType.Commissar -> DataAboutRole(R.drawable.hat_ic, ColorRole.Red)
-        RoleType.Doctor -> DataAboutRole(R.drawable.plus_ic, ColorRole.Red)
-        RoleType.Don -> DataAboutRole(R.drawable.red_hat_ic, ColorRole.Black)
-        RoleType.Putana -> DataAboutRole(R.drawable.lips_ic, ColorRole.Red)
-        RoleType.Lift -> DataAboutRole(R.drawable.knife_ic, ColorRole.Lift)
-        RoleType.Immortal -> DataAboutRole(R.drawable.bird_ic, ColorRole.Red)
+    private fun getDataAboutRole(roleType: Int): DataAboutRole = when(roleType){
+        PEACEFUL -> DataAboutRole(R.drawable.people_ic, ColorRole.Red)
+        MAFIA -> DataAboutRole(R.drawable.gun_ic, ColorRole.Black)
+        COMMISSAR -> DataAboutRole(R.drawable.hat_ic, ColorRole.Red)
+        DOCTOR -> DataAboutRole(R.drawable.plus_ic, ColorRole.Red)
+        DON -> DataAboutRole(R.drawable.red_hat_ic, ColorRole.Black)
+        PUTANA -> DataAboutRole(R.drawable.lips_ic, ColorRole.Red)
+        LIFT -> DataAboutRole(R.drawable.knife_ic, ColorRole.Lift)
+        else -> DataAboutRole(R.drawable.bird_ic, ColorRole.Red)
     }
 
     private fun setColorRole(role: ColorRole, count: Int){
@@ -96,7 +97,8 @@ data class PlayerPanelData(
     val id: Int,
     val name: String,
     val icon: Int,
-    val typeRole: RoleType,
+    val typeRole: Int,
     val color: ColorRole,
+    val roleName: String,
     var isSelected:Boolean = false,
 )

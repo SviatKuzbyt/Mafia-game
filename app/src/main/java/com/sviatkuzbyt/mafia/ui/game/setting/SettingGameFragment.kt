@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sviatkuzbyt.mafia.databinding.FragmentSettingGameBinding
 import com.sviatkuzbyt.mafia.ui.game.activity.GameViewModel
@@ -18,7 +19,7 @@ import com.sviatkuzbyt.mafia.ui.game.elements.adapters.RolesSettingAdapter
 class SettingGameFragment : Fragment(), GameInterface {
     private var _binding: FragmentSettingGameBinding? = null
     private val binding get() = _binding!!
-    private val viewModel by viewModels<SettingGameViewModel>()
+    private lateinit var viewModel: SettingGameViewModel
     private val activityViewModel by activityViewModels<GameViewModel>()
     private lateinit var playersSettingAdapter: PlayersSettingAdapter
     private lateinit var rolesSettingAdapter: RolesSettingAdapter
@@ -34,6 +35,9 @@ class SettingGameFragment : Fragment(), GameInterface {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(requireActivity())[SettingGameViewModel::class.java]
+
         binding.rolesSettingRecycler.layoutManager = LinearLayoutManager(activity)
         rolesSettingAdapter = RolesSettingAdapter(arrayOf(), viewModel)
         binding.rolesSettingRecycler.adapter = rolesSettingAdapter
@@ -73,10 +77,12 @@ class SettingGameFragment : Fragment(), GameInterface {
     }
 
     override fun nextButtonClick() {
+
         val gameList = viewModel.createGameList()
         activityViewModel.gameArray = gameList
         activityViewModel.setStartGameStep()
     }
+
 
     override fun backButtonClick() {}
 }

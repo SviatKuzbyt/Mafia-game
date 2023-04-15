@@ -4,9 +4,12 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.sviatkuzbyt.mafia.R
 import com.sviatkuzbyt.mafia.data.game.SettingGameRepository
 import com.sviatkuzbyt.mafia.ui.elements.SingleLiveEvent
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 sealed class RecycleChangeMode{
     object LoadAll: RecycleChangeMode()
@@ -72,4 +75,9 @@ class SettingGameViewModel(application: Application): AndroidViewModel(applicati
     fun createGameList() = repository.getGameList(_rolesArray, _playersList)
 
     fun getPosition() = rolePosition
+
+    override fun onCleared() {
+        super.onCleared()
+        repository.saveData(_rolesArray, _playersList)
+    }
 }

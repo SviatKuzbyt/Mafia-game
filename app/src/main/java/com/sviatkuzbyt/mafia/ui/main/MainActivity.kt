@@ -21,8 +21,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, GameActivity::class.java))
         }
 
+        val intentNextGame = Intent(this, GameActivity::class.java)
+        intentNextGame.putExtra("loadSaveGame", true)
+
         val menuArray = arrayOf(
-            MainMenuData(R.drawable.continue_ic, R.string.continue_game, null),
+            MainMenuData(R.drawable.continue_ic, R.string.continue_game, intentNextGame),
             MainMenuData(R.drawable.rules_ic, R.string.rules, null),
             MainMenuData(R.drawable.settings_ic, R.string.settings, null)
         )
