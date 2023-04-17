@@ -16,7 +16,7 @@ import com.sviatkuzbyt.mafia.ui.game.setting.SettingGameFragment
 
 class GameViewModel(private val application: Application, isLoadSaveGame: Boolean): AndroidViewModel(application) {
     val toolBarLabel = MutableLiveData<String>()
-    val idForHelpButton = MutableLiveData<Int>()
+    var idForHelpButton: Int? = null
     val isVisibleBackButton = MutableLiveData<Boolean>()
     val textOnNextButton = MutableLiveData<String>()
     val currentFragment = MutableLiveData<Fragment>()
@@ -35,7 +35,7 @@ class GameViewModel(private val application: Application, isLoadSaveGame: Boolea
     }
 
     private fun setSettingGameStep(){
-        setStep(R.string.new_game, false, R.string.setting_game, SettingGameFragment(), R.string.exit_game_description_settings)
+        setStep(R.string.new_game, false, R.string.setting_game, SettingGameFragment(), R.string.exit_game_description_settings, 5)
     }
 
     fun setStartGameStep(){
@@ -43,15 +43,15 @@ class GameViewModel(private val application: Application, isLoadSaveGame: Boolea
             false,
             null,
             InformationFragment.newInstance(application.getString(R.string.start_game_label), application.getString(R.string.start_game_information), "🚗", false),
-            R.string.exit_game_description_roles)
+            R.string.exit_game_description_roles, null)
     }
 
     fun setGetCardStep(){
-        setStep(R.string.next, true, R.string.roles, RolesFragment(), R.string.exit_game_description_roles)
+        setStep(R.string.next, true, R.string.roles, RolesFragment(), R.string.exit_game_description_roles, 6)
     }
 
     fun setPlayerPanelStep(){
-        setStep(R.string.remove, true, R.string.player_panel, PlayerPanelFragment(), R.string.exit_game_description_game)
+        setStep(R.string.remove, true, R.string.player_panel, PlayerPanelFragment(), R.string.exit_game_description_game, 7)
         isPlayerPanelStep = true
     }
     fun finishGame(result: String){
@@ -59,7 +59,7 @@ class GameViewModel(private val application: Application, isLoadSaveGame: Boolea
             false,
             null,
             InformationFragment.newInstance(application.getString(R.string.end_game), result, "🎉", true),
-            null)
+            null, null)
         isPlayerPanelStep = false
     }
 
@@ -68,7 +68,8 @@ class GameViewModel(private val application: Application, isLoadSaveGame: Boolea
         visibleBack: Boolean,
         label: Int?,
         fragment: Fragment,
-        exitText: Int?
+        exitText: Int?,
+        help: Int?
     ){
         textOnNextButton.value = application.getString(nextButton)
         isVisibleBackButton.value = visibleBack
@@ -77,6 +78,7 @@ class GameViewModel(private val application: Application, isLoadSaveGame: Boolea
             if (label == null) ""
             else application.getString(label)
         exitWindowText = exitText
+        idForHelpButton = help
     }
 
     fun closeActivity(){

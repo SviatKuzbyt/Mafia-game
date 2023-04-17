@@ -1,6 +1,7 @@
 package com.sviatkuzbyt.mafia.ui.game.activity
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -15,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.sviatkuzbyt.mafia.R
 import com.sviatkuzbyt.mafia.ui.elements.ExitGameWindow
 import com.sviatkuzbyt.mafia.ui.elements.GameInterface
+import com.sviatkuzbyt.mafia.ui.help.item.HelpActivity
 
 class GameActivity : AppCompatActivity() {
 
@@ -81,6 +83,17 @@ class GameActivity : AppCompatActivity() {
 
         onBackPressedDispatcher.addCallback(this) {
             exitGame()
+        }
+
+        helpButton.setOnClickListener {
+        val helpId = viewModel.idForHelpButton
+            if(helpId == null)
+                Toast.makeText(this, getString(R.string.no_help), Toast.LENGTH_SHORT).show()
+            else{
+                val intent = Intent(this, HelpActivity::class.java)
+                intent.putExtra("id", helpId)
+                startActivity(intent)
+            }
         }
     }
 
