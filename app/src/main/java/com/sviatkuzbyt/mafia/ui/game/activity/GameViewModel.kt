@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.sviatkuzbyt.mafia.R
-import com.sviatkuzbyt.mafia.data.game.GameRepository
-import com.sviatkuzbyt.mafia.data.game.PlayerData
+import com.sviatkuzbyt.mafia.data.game.repositories.GameRepository
+import com.sviatkuzbyt.mafia.data.game.elements.PlayerData
 import com.sviatkuzbyt.mafia.ui.elements.SingleLiveEvent
 import com.sviatkuzbyt.mafia.ui.game.InformationFragment
 import com.sviatkuzbyt.mafia.ui.game.playerpanel.PlayerPanelFragment

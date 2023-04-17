@@ -1,6 +1,7 @@
 package com.sviatkuzbyt.mafia.data.game
 
 import androidx.test.platform.app.InstrumentationRegistry
+import com.sviatkuzbyt.mafia.data.game.repositories.SettingGameRepository
 import org.junit.Before
 import org.junit.Test
 

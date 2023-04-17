@@ -5,7 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.view.View
-import com.sviatkuzbyt.mafia.data.game.CardRole
+import com.sviatkuzbyt.mafia.data.game.elements.CardRole
 import com.sviatkuzbyt.mafia.databinding.FragmentRolesBinding
 
 class CardAnimation(private val binding: FragmentRolesBinding, screenWidth: Float) {

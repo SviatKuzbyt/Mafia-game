@@ -3,7 +3,7 @@ package com.sviatkuzbyt.mafia.ui.game.roles
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.sviatkuzbyt.mafia.data.game.PlayerData
+import com.sviatkuzbyt.mafia.data.game.elements.PlayerData
 import com.sviatkuzbyt.mafia.ui.game.activity.GameViewModel
 
 @Suppress("UNCHECKED_CAST")

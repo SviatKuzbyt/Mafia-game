@@ -4,9 +4,9 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.sviatkuzbyt.mafia.data.game.CardRole
-import com.sviatkuzbyt.mafia.data.game.PlayerData
-import com.sviatkuzbyt.mafia.data.game.RolesRepository
+import com.sviatkuzbyt.mafia.data.game.elements.CardRole
+import com.sviatkuzbyt.mafia.data.game.elements.PlayerData
+import com.sviatkuzbyt.mafia.data.game.repositories.RolesRepository
 import com.sviatkuzbyt.mafia.ui.game.activity.GameViewModel
 import kotlinx.coroutines.launch
 

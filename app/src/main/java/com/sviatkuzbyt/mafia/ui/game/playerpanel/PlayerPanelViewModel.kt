@@ -3,9 +3,9 @@ package com.sviatkuzbyt.mafia.ui.game.playerpanel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.sviatkuzbyt.mafia.data.game.PlayerData
-import com.sviatkuzbyt.mafia.data.game.PlayerPanelData
-import com.sviatkuzbyt.mafia.data.game.PlayerPanelRepository
+import com.sviatkuzbyt.mafia.data.game.elements.PlayerData
+import com.sviatkuzbyt.mafia.data.game.elements.PlayerPanelData
+import com.sviatkuzbyt.mafia.data.game.repositories.PlayerPanelRepository
 import com.sviatkuzbyt.mafia.ui.game.activity.GameViewModel
 
 class PlayerPanelViewModel(application: Application, gameArray: Array<PlayerData>, private val activityViewModel: GameViewModel): AndroidViewModel(application) {

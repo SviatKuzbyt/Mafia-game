@@ -1,9 +1,10 @@
-package com.sviatkuzbyt.mafia.data.game
+package com.sviatkuzbyt.mafia.data.game.repositories
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.graphics.drawable.PictureDrawable
-import com.caverock.androidsvg.SVG
+import com.sviatkuzbyt.mafia.data.game.elements.CardRole
+import com.sviatkuzbyt.mafia.data.game.elements.PlayerData
+import com.sviatkuzbyt.mafia.data.game.elements.loadImage
 
 class RolesRepository(private val context: Context) {
     fun generateCardRolesArray(gameArray: Array<PlayerData>): Array<CardRole>{
@@ -15,12 +16,4 @@ class RolesRepository(private val context: Context) {
             )
         }
     }
-
-
 }
-
-data class CardRole(
-    val player: String,
-    val role: String,
-    val image: Drawable?
-)

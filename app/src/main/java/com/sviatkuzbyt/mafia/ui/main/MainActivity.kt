@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sviatkuzbyt.mafia.R
 import com.sviatkuzbyt.mafia.ui.game.activity.GameActivity
+import com.sviatkuzbyt.mafia.ui.help.list.HelpListActivity
 
 class MainActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         val menuArray = arrayOf(
             MainMenuData(R.drawable.continue_ic, R.string.continue_game, intentNextGame),
-            MainMenuData(R.drawable.rules_ic, R.string.rules, null),
+            MainMenuData(R.drawable.rules_ic, R.string.help, Intent(this, HelpListActivity::class.java)),
             MainMenuData(R.drawable.settings_ic, R.string.settings, null)
         )
 

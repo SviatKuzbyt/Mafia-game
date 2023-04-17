@@ -1,4 +1,4 @@
-package com.sviatkuzbyt.mafia.data.game
+package com.sviatkuzbyt.mafia.data.game.elements
 
 import android.content.Context
 import android.graphics.drawable.Drawable

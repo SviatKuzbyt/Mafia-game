@@ -6,7 +6,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.sviatkuzbyt.mafia.R
-import com.sviatkuzbyt.mafia.data.game.loadImage
+import com.sviatkuzbyt.mafia.data.game.elements.loadImage
 
 class PlayerRoleActivity : AppCompatActivity() {
     private val close: Button by lazy { findViewById(R.id.closeButton) }

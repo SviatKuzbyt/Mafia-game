@@ -11,7 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sviatkuzbyt.mafia.R
-import com.sviatkuzbyt.mafia.data.game.PlayerPanelData
+import com.sviatkuzbyt.mafia.data.game.elements.PlayerPanelData
 import com.sviatkuzbyt.mafia.ui.game.PlayerRoleActivity
 import com.sviatkuzbyt.mafia.ui.game.playerpanel.PlayerPanelViewModel
 

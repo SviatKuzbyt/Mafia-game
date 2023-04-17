@@ -1,6 +1,8 @@
-package com.sviatkuzbyt.mafia.data.game
+package com.sviatkuzbyt.mafia.data.game.repositories
 
 import android.content.Context
+import com.sviatkuzbyt.mafia.data.game.elements.FileManager
+import com.sviatkuzbyt.mafia.data.game.elements.PlayerData
 
 class GameRepository(context: Context) {
     private val fileManager = FileManager(context)
@@ -12,10 +14,3 @@ class GameRepository(context: Context) {
     }
 }
 
-data class PlayerData(
-    val id: Int,
-    val name: String,
-    val role: Int,
-    val roleName: String,
-    var isAlive: Boolean = true
-) : java.io.Serializable

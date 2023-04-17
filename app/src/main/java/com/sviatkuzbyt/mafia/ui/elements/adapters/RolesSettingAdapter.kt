@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sviatkuzbyt.mafia.R
-import com.sviatkuzbyt.mafia.data.game.Roles
+import com.sviatkuzbyt.mafia.data.game.elements.Roles
 import com.sviatkuzbyt.mafia.ui.game.setting.SettingGameViewModel
 
 class RolesSettingAdapter(private var dataSet: Array<Roles>, private val viewModel: SettingGameViewModel) :

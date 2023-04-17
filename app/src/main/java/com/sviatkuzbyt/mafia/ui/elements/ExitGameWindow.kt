@@ -15,7 +15,7 @@ class ExitGameWindow(private val activity: GameActivity) {
     }
 
     private fun setWindowBuild(){
-        build = AlertDialog.Builder(activity, R.style.AlertDialogCustom)
+        build = AlertDialog.Builder(activity, R.style.exit_game_window)
         build.setTitle(R.string.exit_game_label)
 
         build.setPositiveButton(R.string.yes){_, _ ->

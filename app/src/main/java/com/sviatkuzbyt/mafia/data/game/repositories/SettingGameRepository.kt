@@ -1,8 +1,9 @@
-package com.sviatkuzbyt.mafia.data.game
+package com.sviatkuzbyt.mafia.data.game.repositories
 
 import android.content.Context
 import android.util.Log
 import com.sviatkuzbyt.mafia.R
+import com.sviatkuzbyt.mafia.data.game.elements.*
 
 class SettingGameRepository(private val context: Context) {
 
@@ -81,11 +82,3 @@ class SettingGameRepository(private val context: Context) {
     }
 }
 
-data class Roles(
-    val name: String,
-    val icon: Int,
-    val min: Int,
-    val max: Int,
-    val roleType: Int,
-    var count: Int = min
-): java.io.Serializable

@@ -1,7 +1,8 @@
-package com.sviatkuzbyt.mafia.data.game
+package com.sviatkuzbyt.mafia.data.game.repositories
 
 import android.content.Context
 import com.sviatkuzbyt.mafia.R
+import com.sviatkuzbyt.mafia.data.game.elements.*
 
 sealed class ColorRole{
     object Red: ColorRole()
@@ -84,21 +85,4 @@ class PlayerPanelRepository(private val gameArray: Array<PlayerData>, private va
 
         return "${context.getString(role)}\n\n$roleList"
     }
-
-
 }
-
-data class DataAboutRole(
-    val icon: Int,
-    val color: ColorRole
-)
-
-data class PlayerPanelData(
-    val id: Int,
-    val name: String,
-    val icon: Int,
-    val typeRole: Int,
-    val color: ColorRole,
-    val roleName: String,
-    var isSelected:Boolean = false,
-)
