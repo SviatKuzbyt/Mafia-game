@@ -13,16 +13,13 @@
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/home_background" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/imageLogo"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="48dp"
-        android:fontFamily="@font/kelly_slab"
-        android:text="@string/mafia_lable"
-        android:textAppearance="@style/decorate"
-        android:textColor="@color/white" />
+        android:layout_marginHorizontal="86dp"
+        android:layout_marginTop="64dp"
+        app:srcCompat="@drawable/logo" />
 
     <LinearLayout
         android:layout_width="match_parent"

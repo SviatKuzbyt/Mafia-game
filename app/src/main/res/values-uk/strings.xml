@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Мафія</string>
+    <string name="new_game">Створити гру</string>
+    <string name="continue_game">Продовжити гру</string>
+    <string name="rules">Правила</string>
+    <string name="settings">Налаштування</string>
+    <string name="help">Допомога</string>
+    <string name="close">Закрити</string>
+    <string name="back">Назад</string>
+    <string name="mafia">Мафія</string>
+    <string name="commissar">Комісар</string>
+    <string name="doctor">Лікар</string>
+    <string name="peaceful">Мирний житель</string>
+    <string name="player">Гравець</string>
+    <string name="reduce">Зменшити кількість</string>
+    <string name="increase">Збільшити кількість</string>
+    <string name="roles">Ролі</string>
+    <string name="players">Гравці</string>
+    <string name="players_count">Кількість гравців:</string>
+    <string name="don">Дон</string>
+    <string name="putana">Путана</string>
+    <string name="lift">Маніяк</string>
+    <string name="immortal">Бесмертний</string>
+    <string name="setting_game">Налаштування гри</string>
+    <string name="start_game_label">Гра починається</string>
+    <string name="start_game_information">Місто засинає і ведучий роздає ролі</string>
+    <string name="no_help">Не має в чому допомогти</string>
+    <string name="next">Далі</string>
+    <string name="see_role">Перегляд ролі гравця</string>
+    <string name="remove">Усунути</string>
+    <string name="player_panel">Панель гравців</string>
+    <string name="peaceful_win">Перемогли мирні</string>
+    <string name="mafia_win">Перемогла мафія</string>
+    <string name="lift_win">Переміг маніяк</string>
+    <string name="end_game">Кінець гри</string>
+    <string name="no_save">Не має збереженої гри</string>
+    <string name="exit_game_label">Вийти з гри?</string>
+    <string name="exit_game_description_settings">Всі налаштування гри збережуться</string>
+    <string name="exit_game_description_roles">На цьому етапі гра не збережеться, і ви не зможете до неї повернутися</string>
+    <string name="exit_game_description_game">Гра збережеться (список живих гравців) і ви зможете повернутися до неї пізніше</string>
+    <string name="yes">Так</string>
+    <string name="no">Ні</string>
+</resources>
