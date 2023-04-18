@@ -1,10 +1,12 @@
 package com.sviatkuzbyt.mafia.ui.main
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sviatkuzbyt.mafia.R
@@ -12,6 +14,7 @@ import com.sviatkuzbyt.mafia.ui.game.activity.GameActivity
 import com.sviatkuzbyt.mafia.ui.help.list.HelpListActivity
 import com.sviatkuzbyt.mafia.ui.settings.SettingsActivity
 
+val Context.settingsStore by preferencesDataStore(name = "settings")
 class MainActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {

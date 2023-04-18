@@ -37,6 +37,4 @@ class ExitGameWindow(private val activity: GameActivity) {
         play = build.create()
         play.setCancelable(true)
     }
-
-
 }

@@ -29,7 +29,7 @@
         android:textAppearance="@style/basic_bold"/>
 
     <CheckBox
-        android:id="@+id/checkBoxAutoName"
+        android:id="@+id/checkBoxAutoPlayer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -55,7 +55,7 @@
         android:textAppearance="@style/basic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxAutoName"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxAutoPlayer"
         tools:ignore="RtlSymmetry" />
 
     <androidx.appcompat.widget.AppCompatButton
