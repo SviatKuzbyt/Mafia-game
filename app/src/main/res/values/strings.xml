@@ -41,4 +41,10 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
+    <string name="auto_fill" translatable="false">Заповнювати імена гравців автоматично</string>
+    <string name="auto_win" translatable="false">Автоматично визначати переможця гри</string>
+    <string name="clear_data" translatable="false">Видалити дані</string>
+    <string name="about_label" translatable="false">Про програму</string>
+    <string name="about_text" translatable="false">бла бла бла бла бла <a href="https://translate.google.com/?hl=uk">Посилання</a></string>
+
 </resources>
