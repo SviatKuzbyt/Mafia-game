@@ -1,10 +1,8 @@
-package com.sviatkuzbyt.mafia.data.help.repositories
+package com.sviatkuzbyt.mafia.data.help.database
 
 import android.content.Context
-import android.util.Log
 import com.sviatkuzbyt.mafia.data.help.HelpItemData
 import com.sviatkuzbyt.mafia.data.help.HelpListData
-import com.sviatkuzbyt.mafia.data.help.database.HelpDataBase
 import java.util.Locale
 
 class HelpDBRepository(context: Context) {
@@ -13,7 +11,6 @@ class HelpDBRepository(context: Context) {
     private val helpDao = HelpDataBase.getInstance(context).dao()
 
     fun getHelpList(): Array<HelpListData>{
-        Log.v("app test", language)
         return if(language == "uk") helpDao.getHelpListUkrainian()
         else helpDao.getHelpListEnglish()
     }

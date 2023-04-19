@@ -9,7 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.sviatkuzbyt.mafia.R
-import com.sviatkuzbyt.mafia.ui.elements.RemoveDataWindow
+import com.sviatkuzbyt.mafia.ui.elements.alertwindow.RemoveDataWindow
 
 class SettingsActivity : AppCompatActivity() {
 

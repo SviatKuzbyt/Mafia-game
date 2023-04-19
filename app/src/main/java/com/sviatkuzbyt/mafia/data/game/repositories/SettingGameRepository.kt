@@ -1,11 +1,10 @@
 package com.sviatkuzbyt.mafia.data.game.repositories
 
 import android.content.Context
-import android.util.Log
 import com.sviatkuzbyt.mafia.R
 import com.sviatkuzbyt.mafia.data.game.elements.*
 
-class SettingGameRepository(private val context: Context) {
+class SettingGameRepository(private val context: Context, private val autoPlayers: Boolean) {
 
     val fileManager = FileManager(context)
     var rolesArray = arrayOf<Roles>()
@@ -18,20 +17,10 @@ class SettingGameRepository(private val context: Context) {
     fun getBasicRolesArray() = rolesArray
     fun getBasicPlayersList() = playersList
 
-    fun getGameList(_rolesArray: Array<Roles>, _playerList: List<String>): Array<PlayerData>{
-        val roles = mutableListOf<Int>()
-        _rolesArray.forEach {
-            if (it.count > 0){
-                for (i in 1..it.count){
-                    roles.add(it.roleType)
-                    Log.v("mainButtonClick", it.roleType.toString())
-                }
-            }
-        }
-
-        return Array(_playerList.size){
-            val role = roles.random()
-            roles.remove(role)
+    fun getGameList(_rolesArray: Array<Roles>, _playerList: List<String>): Array<PlayerData> {
+        val roles = _rolesArray.flatMap { role -> List(role.count) { role.roleType } }.shuffled()
+        return Array(_playerList.size) {
+            val role = roles[it]
             PlayerData(it, _playerList[it], role, getRoleName(role))
         }
     }
@@ -63,7 +52,10 @@ class SettingGameRepository(private val context: Context) {
         )
 
         val playersCount = rolesArray.sumOf { it.count }
-        playersList = MutableList(playersCount) { "${context.getString(R.string.player)} ${it + 1}" }
+        playersList = if(autoPlayers)
+            MutableList(playersCount) { "${context.getString(R.string.player)} ${it + 1}" }
+        else
+            MutableList(playersCount) {""}
     }
 
     private fun readList(){
@@ -81,4 +73,3 @@ class SettingGameRepository(private val context: Context) {
         fileManager.writeFile(_playersList, "playerList")
     }
 }
-

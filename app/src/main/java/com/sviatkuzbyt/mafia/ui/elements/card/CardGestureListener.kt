@@ -1,4 +1,4 @@
-package com.sviatkuzbyt.mafia.ui.elements
+package com.sviatkuzbyt.mafia.ui.elements.card
 
 import android.view.GestureDetector
 import android.view.MotionEvent
@@ -14,12 +14,12 @@ class CardGestureListener(private val viewModel: RolesViewModel) : GestureDetect
         velocityX: Float,
         velocityY: Float
     ): Boolean {
-        val diffX = e2.x.minus(e1.x )
-        val diffY = e2.y.minus(e1.y)
+        val diffX = e2.x - e1.x
+        val diffY = e2.y - e1.y
 
-        if (Math.abs(diffX) > Math.abs(diffY) &&
-            Math.abs(diffX) > SWIPE_THRESHOLD &&
-            Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD
+        if (kotlin.math.abs(diffX) > kotlin.math.abs(diffY) &&
+            kotlin.math.abs(diffX) > SWIPE_THRESHOLD &&
+            kotlin.math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD
         ) {
             if (diffX > 0) {
                 viewModel.previousPlayer()

@@ -5,8 +5,10 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.sviatkuzbyt.mafia.R
-import com.sviatkuzbyt.mafia.data.game.repositories.GameRepository
+import com.sviatkuzbyt.mafia.data.game.elements.FileManager
 import com.sviatkuzbyt.mafia.data.game.elements.PlayerData
 import com.sviatkuzbyt.mafia.ui.elements.SingleLiveEvent
 import com.sviatkuzbyt.mafia.ui.game.InformationFragment
@@ -23,7 +25,7 @@ class GameViewModel(private val application: Application, isLoadSaveGame: Boolea
     var gameArray = arrayOf<PlayerData>()
     val closeActivity = SingleLiveEvent<Boolean>()
     private var isPlayerPanelStep = false
-    private var fileManager = GameRepository(application)
+    private var fileManager = FileManager(application)
     val error = SingleLiveEvent<String>()
     var exitWindowText: Int? = null
 
@@ -87,16 +89,27 @@ class GameViewModel(private val application: Application, isLoadSaveGame: Boolea
 
     override fun onCleared() {
         super.onCleared()
-        if(isPlayerPanelStep) fileManager.writeArray(gameArray)
+        if(isPlayerPanelStep) fileManager.writeFile(gameArray, "arrayGame")
     }
 
     private fun loadGameArray(){
-        val _gameArray = fileManager.readArray()
+        val _gameArray = fileManager.readGameArray()
         if(_gameArray != null){
             gameArray = _gameArray
             setPlayerPanelStep()
         }
         else
             error.value = application.getString(R.string.no_save)
+    }
+}
+
+@Suppress("UNCHECKED_CAST")
+class GameViewModelFactory(private val application: Application,
+                           private val isLoadSaveGame: Boolean) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(GameViewModel::class.java)) {
+            return GameViewModel(application, isLoadSaveGame) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

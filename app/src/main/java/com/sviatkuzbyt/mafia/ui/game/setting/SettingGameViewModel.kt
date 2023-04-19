@@ -4,9 +4,13 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.sviatkuzbyt.mafia.R
+import com.sviatkuzbyt.mafia.data.game.elements.Roles
 import com.sviatkuzbyt.mafia.data.game.repositories.SettingGameRepository
+import com.sviatkuzbyt.mafia.data.settings.SettingStoreRepository
 import com.sviatkuzbyt.mafia.ui.elements.SingleLiveEvent
+import kotlinx.coroutines.launch
 
 sealed class RecycleChangeMode{
     object LoadAll: RecycleChangeMode()
@@ -16,22 +20,33 @@ sealed class RecycleChangeMode{
 }
 
 class SettingGameViewModel(application: Application): AndroidViewModel(application) {
-    private val repository = SettingGameRepository(application)
-    private val _rolesArray = repository.getBasicRolesArray()
-    private val _playersList = repository.getBasicPlayersList()
+    private lateinit var repository: SettingGameRepository
+    private var autoPlayers = false
+    private lateinit var _rolesArray: Array<Roles>
+    private lateinit var _playersList: MutableList<String>
     private val countLabel = application.getString(R.string.players_count)
     private val playerLabel = application.getString(R.string.player)
     var playersChangeMode: RecycleChangeMode = RecycleChangeMode.LoadAll
-    val rolesArray = MutableLiveData(_rolesArray)
-    val playersList = MutableLiveData(_playersList)
+    val rolesArray = MutableLiveData<Array<Roles>>()
+    val playersList = MutableLiveData<MutableList<String>>()
     val error = SingleLiveEvent<String>()
+    private var roleCount = 0
     val playersCount = MutableLiveData<String>()
     var rolesChangeMode: RecycleChangeMode = RecycleChangeMode.LoadAll
-    private var roleCount = _playersList.size
-    private var rolePosition = _playersList.size
+    private var rolePosition = 0
 
     init {
-        playersCount.value = "$countLabel $roleCount"
+        viewModelScope.launch{
+            autoPlayers = SettingStoreRepository(application).getAutoPlayer()
+            repository = SettingGameRepository(application, autoPlayers)
+            _rolesArray = repository.getBasicRolesArray()
+            _playersList = repository.getBasicPlayersList()
+            rolesArray.postValue(_rolesArray)
+            playersList.postValue(_playersList)
+            roleCount = _playersList.size
+            playersCount.postValue("$countLabel $roleCount")
+            rolePosition = _playersList.size
+        }
     }
 
     fun changeRole(position: Int, delta: Int){
@@ -39,7 +54,7 @@ class SettingGameViewModel(application: Application): AndroidViewModel(applicati
 
         if (canAddMore(position)){
             playersChangeMode = if(delta > 0){
-                _playersList.add("$playerLabel ${_playersList.size+1}")
+                _playersList.add(if(autoPlayers) "$playerLabel ${_playersList.size+1}" else "")
                 RecycleChangeMode.AddItem
             } else{
                 _playersList.removeLast()

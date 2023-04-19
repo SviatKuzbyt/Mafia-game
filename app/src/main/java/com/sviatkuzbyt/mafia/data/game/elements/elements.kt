@@ -18,10 +18,10 @@ fun loadImage(roleType: Int, context: Context): Drawable?{
             else -> "immortal"
         }
 
-        val inputStream = context.assets.open("basic_cards/$roleName.svg")
-        val svgDrawable = SVG.getFromInputStream(inputStream).renderToPicture()
-        inputStream.close()
-        PictureDrawable(svgDrawable)
+        val inputStream = context.assets.open("basic_cards/$roleName.svg").use {
+            SVG.getFromInputStream(it).renderToPicture()
+        }
+        PictureDrawable(inputStream)
     } catch (e: Exception){
         null
     }

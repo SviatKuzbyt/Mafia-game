@@ -4,19 +4,22 @@ import android.content.Context
 import com.sviatkuzbyt.mafia.R
 import com.sviatkuzbyt.mafia.data.game.elements.*
 
-sealed class ColorRole{
-    object Red: ColorRole()
-    object Black: ColorRole()
-    object Lift: ColorRole()
+sealed class ColorRole {
+    object Red : ColorRole()
+    object Black : ColorRole()
+    object Lift : ColorRole()
 }
 
-class PlayerPanelRepository(private val gameArray: Array<PlayerData>, private val context: Context) {
+class PlayerPanelRepository(
+    private val gameArray: Array<PlayerData>,
+    private val context: Context
+) {
 
     private var redRoles = 0
     private var blackRoles = 0
     private var liftRole = 0
 
-    fun getPlayerPanelList(): MutableList<PlayerPanelData>{
+    fun getPlayerPanelList(): MutableList<PlayerPanelData> {
         val playerPanelList = mutableListOf<PlayerPanelData>()
         gameArray.forEach {
             if(it.isAlive){
@@ -46,36 +49,35 @@ class PlayerPanelRepository(private val gameArray: Array<PlayerData>, private va
         else -> DataAboutRole(R.drawable.bird_ic, ColorRole.Red)
     }
 
-    private fun setColorRole(role: ColorRole, count: Int){
+    private fun setColorRole(role: ColorRole, count: Int) {
         when(role){
             ColorRole.Red -> redRoles += count
             ColorRole.Black -> blackRoles += count
-            ColorRole.Lift -> liftRole += count
+            else -> liftRole += count
         }
     }
 
-    fun editPlayer(player: PlayerPanelData){
+    fun editPlayer(player: PlayerPanelData) {
         val isAlive = !player.isSelected
         val count = if(isAlive) 1 else -1
         gameArray[player.id].isAlive = isAlive
         setColorRole(player.color, count)
     }
 
-    fun matchResult(): String?{
-        return if(blackRoles >= redRoles)
-            makeResultText(ColorRole.Black)
-        else if(blackRoles + liftRole == 0)
-            makeResultText(ColorRole.Red)
-        else if(blackRoles + redRoles <= liftRole)
-            makeResultText(ColorRole.Lift)
-        else null
+    fun matchResult(): String? {
+        return when {
+            blackRoles >= redRoles -> makeResultText(ColorRole.Black)
+            blackRoles + liftRole == 0 -> makeResultText(ColorRole.Red)
+            blackRoles + redRoles <= liftRole -> makeResultText(ColorRole.Lift)
+            else -> null
+        }
     }
 
-    fun makeResultText(color: ColorRole): String{
+    private fun makeResultText(color: ColorRole): String {
         val role = when(color){
             ColorRole.Red -> R.string.peaceful_win
             ColorRole.Black -> R.string.mafia_win
-            ColorRole.Lift -> R.string.lift_win
+            else -> R.string.lift_win
         }
 
         var roleList = ""

@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sviatkuzbyt.mafia.databinding.FragmentSettingGameBinding
 import com.sviatkuzbyt.mafia.ui.game.activity.GameViewModel
 import com.sviatkuzbyt.mafia.ui.elements.GameInterface
-import com.sviatkuzbyt.mafia.ui.elements.adapters.PlayersSettingAdapter
-import com.sviatkuzbyt.mafia.ui.elements.adapters.RolesSettingAdapter
+import com.sviatkuzbyt.mafia.ui.elements.recycleradapters.PlayersSettingAdapter
+import com.sviatkuzbyt.mafia.ui.elements.recycleradapters.RolesSettingAdapter
 
 class SettingGameFragment : Fragment(), GameInterface {
     private var _binding: FragmentSettingGameBinding? = null

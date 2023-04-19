@@ -1,4 +1,4 @@
-package com.sviatkuzbyt.mafia.ui.elements.adapters
+package com.sviatkuzbyt.mafia.ui.elements.recycleradapters
 
 import android.content.Context
 import android.content.Intent
@@ -15,25 +15,23 @@ import com.sviatkuzbyt.mafia.ui.help.item.HelpActivity
 class HelpListAdapter(private var dataSet: Array<HelpListData>, private val context: Context) :
     RecyclerView.Adapter<HelpListAdapter.ViewHolder>() {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val helpListText: TextView
-        init {
-            helpListText = view.findViewById(R.id.helpListText)
-        }
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val helpListText: TextView = itemView.findViewById(R.id.helpListText)
     }
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.help_list, viewGroup, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.help_list, parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.helpListText.text = dataSet[position].name
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = dataSet[position]
+        holder.helpListText.text = item.name
 
-        viewHolder.itemView.setOnClickListener {
+        holder.itemView.setOnClickListener {
             val intent = Intent(context, HelpActivity::class.java)
-            intent.putExtra("id", dataSet[position].id)
+            intent.putExtra("id", item.id)
             context.startActivity(intent)
         }
     }

@@ -3,7 +3,7 @@ package com.sviatkuzbyt.mafia.ui.help.item
 import android.app.Application
 import androidx.lifecycle.*
 import com.sviatkuzbyt.mafia.data.help.HelpItemData
-import com.sviatkuzbyt.mafia.data.help.repositories.HelpDBRepository
+import com.sviatkuzbyt.mafia.data.help.database.HelpDBRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

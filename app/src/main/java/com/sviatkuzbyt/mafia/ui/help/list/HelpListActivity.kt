@@ -7,7 +7,7 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sviatkuzbyt.mafia.R
-import com.sviatkuzbyt.mafia.ui.elements.adapters.HelpListAdapter
+import com.sviatkuzbyt.mafia.ui.elements.recycleradapters.HelpListAdapter
 
 class HelpListActivity : AppCompatActivity() {
     val buttonCloseList: Button by lazy { findViewById(R.id.buttonCloseList) }

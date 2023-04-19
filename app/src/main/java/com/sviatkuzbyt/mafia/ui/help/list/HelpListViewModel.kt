@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.sviatkuzbyt.mafia.data.help.HelpListData
-import com.sviatkuzbyt.mafia.data.help.repositories.HelpDBRepository
+import com.sviatkuzbyt.mafia.data.help.database.HelpDBRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

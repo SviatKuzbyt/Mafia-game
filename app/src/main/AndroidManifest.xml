@@ -14,7 +14,8 @@
         tools:ignore="LockedOrientationActivity">
         <activity
             android:name=".ui.settings.SettingsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.help.item.HelpActivity"
             android:exported="false"

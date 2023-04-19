@@ -8,13 +8,12 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import com.sviatkuzbyt.mafia.R
-import com.sviatkuzbyt.mafia.ui.elements.ExitGameWindow
+import com.sviatkuzbyt.mafia.ui.elements.alertwindow.ExitGameWindow
 import com.sviatkuzbyt.mafia.ui.elements.GameInterface
 import com.sviatkuzbyt.mafia.ui.help.item.HelpActivity
 
