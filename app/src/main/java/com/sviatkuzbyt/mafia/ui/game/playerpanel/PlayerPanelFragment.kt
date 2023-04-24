@@ -59,4 +59,9 @@ class PlayerPanelFragment : Fragment(), GameInterface {
     override fun backButtonClick() {
         viewModel.getRemovedPlayer()
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

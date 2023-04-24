@@ -5,13 +5,34 @@ import com.sviatkuzbyt.mafia.R
 import com.sviatkuzbyt.mafia.data.game.elements.*
 
 class SettingGameRepository(private val context: Context, private val autoPlayers: Boolean) {
+    private val fileManager = FileManager(context)
+    private var rolesArray = arrayOf<Roles>()
+    private var playersList = mutableListOf<String>()
 
-    val fileManager = FileManager(context)
-    var rolesArray = arrayOf<Roles>()
-    var playersList = mutableListOf<String>()
+    init { getList() }
 
-    init {
-        readList()
+    private fun getList(){
+        rolesArray = fileManager.readRoleArray() ?: getBasicRoleArray()
+        playersList = fileManager.readPlayerList() ?: getBasicPlayerList()
+    }
+
+    private fun getBasicRoleArray() = arrayOf(
+        Roles(context.getString(R.string.mafia), R.drawable.gun_ic, 1, 5, MAFIA),
+        Roles(context.getString(R.string.commissar), R.drawable.hat_ic, 1, 1, COMMISSAR),
+        Roles(context.getString(R.string.doctor), R.drawable.plus_ic, 0, 1, DOCTOR),
+        Roles(context.getString(R.string.peaceful), R.drawable.people_ic, 3, 10, PEACEFUL),
+        Roles(context.getString(R.string.putana), R.drawable.lips_ic, 0, 1, PUTANA),
+        Roles(context.getString(R.string.don), R.drawable.red_hat_ic, 0, 1, DON),
+        Roles(context.getString(R.string.lift), R.drawable.knife_ic, 0, 1, LIFT),
+        Roles(context.getString(R.string.immortal), R.drawable.bird_ic, 0, 1, IMMORTAL)
+    )
+
+    private fun getBasicPlayerList(): MutableList<String>{
+        val playersCount = rolesArray.sumOf { it.count }
+        return if(autoPlayers)
+            MutableList(playersCount) { "${context.getString(R.string.player)} ${it + 1}" }
+        else
+            MutableList(playersCount) {""}
     }
 
     fun getBasicRolesArray() = rolesArray
@@ -37,35 +58,6 @@ class SettingGameRepository(private val context: Context, private val autoPlayer
             else -> R.string.immortal
         }
         return context.getString(roleId)
-    }
-
-    private fun initStandardLists(){
-        rolesArray = arrayOf(
-            Roles(context.getString(R.string.mafia), R.drawable.gun_ic, 1, 5, MAFIA),
-            Roles(context.getString(R.string.commissar), R.drawable.hat_ic, 1, 1, COMMISSAR),
-            Roles(context.getString(R.string.doctor), R.drawable.plus_ic, 0, 1, DOCTOR),
-            Roles(context.getString(R.string.peaceful), R.drawable.people_ic, 3, 10, PEACEFUL),
-            Roles(context.getString(R.string.putana), R.drawable.lips_ic, 0, 1, PUTANA),
-            Roles(context.getString(R.string.don), R.drawable.red_hat_ic, 0, 1, DON),
-            Roles(context.getString(R.string.lift), R.drawable.knife_ic, 0, 1, LIFT),
-            Roles(context.getString(R.string.immortal), R.drawable.bird_ic, 0, 1, IMMORTAL)
-        )
-
-        val playersCount = rolesArray.sumOf { it.count }
-        playersList = if(autoPlayers)
-            MutableList(playersCount) { "${context.getString(R.string.player)} ${it + 1}" }
-        else
-            MutableList(playersCount) {""}
-    }
-
-    private fun readList(){
-        val _rolesArray = fileManager.readRoleArray()
-        val _playersList = fileManager.readPlayerList()
-        if(_rolesArray != null && _playersList != null){
-            rolesArray = _rolesArray
-            playersList = _playersList
-        } else
-            initStandardLists()
     }
 
     fun saveData(_rolesArray: Array<Roles>, _playersList: MutableList<String>){

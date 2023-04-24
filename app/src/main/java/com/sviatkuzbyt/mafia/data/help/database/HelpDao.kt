@@ -7,7 +7,6 @@ import com.sviatkuzbyt.mafia.data.help.HelpListData
 
 @Dao
 interface HelpDao {
-
     @Query("SELECT id, name FROM Ukrainian")
     fun getHelpListUkrainian(): Array<HelpListData>
 

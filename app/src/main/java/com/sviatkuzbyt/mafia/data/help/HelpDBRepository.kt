@@ -1,8 +1,7 @@
-package com.sviatkuzbyt.mafia.data.help.database
+package com.sviatkuzbyt.mafia.data.help
 
 import android.content.Context
-import com.sviatkuzbyt.mafia.data.help.HelpItemData
-import com.sviatkuzbyt.mafia.data.help.HelpListData
+import com.sviatkuzbyt.mafia.data.help.database.HelpDataBase
 import java.util.Locale
 
 class HelpDBRepository(context: Context) {

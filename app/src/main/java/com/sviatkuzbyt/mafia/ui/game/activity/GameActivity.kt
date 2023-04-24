@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import com.sviatkuzbyt.mafia.R
+import com.sviatkuzbyt.mafia.databinding.ActivityGameBinding
 import com.sviatkuzbyt.mafia.ui.elements.alertwindow.ExitGameWindow
 import com.sviatkuzbyt.mafia.ui.elements.GameInterface
 import com.sviatkuzbyt.mafia.ui.help.item.HelpActivity
@@ -20,72 +21,55 @@ import com.sviatkuzbyt.mafia.ui.help.item.HelpActivity
 class GameActivity : AppCompatActivity() {
 
     private var currentFragment: GameInterface? = null
-    lateinit var viewModel: GameViewModel
-    lateinit var exitGameWindow: ExitGameWindow
-    val closeButton: Button by lazy { findViewById(R.id.closeButton) }
-    val helpButton: Button by lazy { findViewById(R.id.helpButton) }
-    val textToolbar: TextView by lazy { findViewById(R.id.textToolbar) }
-    val nextButton: Button by lazy { findViewById(R.id.nextButton) }
-    val backButton: Button by lazy { findViewById(R.id.backButton) }
-    @SuppressLint("CommitTransaction")
+    private lateinit var viewModel: GameViewModel
+    private lateinit var exitGameWindow: ExitGameWindow
+    private val binding by lazy { ActivityGameBinding.inflate(layoutInflater) }
+    private val backButton get() = binding.backButton
+    private val closeButton get() = binding.closeButton
+    private val helpButton get() = binding.helpButton
+    private val nextButton get() = binding.nextButton
+    private val textToolbar get() = binding.textToolbar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_game)
+        setContentView(binding.root)
 
         val isLoadSaveGame = intent.getBooleanExtra("loadSaveGame", false)
-        viewModel = ViewModelProvider(this,
-            GameViewModelFactory(this.application, isLoadSaveGame)
-        )[GameViewModel::class.java]
+        viewModel = ViewModelProvider(this, GameViewModelFactory(application, isLoadSaveGame))
+            .get(GameViewModel::class.java)
 
-        viewModel.toolBarLabel.observe(this){
-            textToolbar.text = it
+        viewModel.toolBarLabel.observe(this) { textToolbar.text = it }
+
+        viewModel.isVisibleBackButton.observe(this) {
+            backButton.visibility = if (it) View.VISIBLE else View.GONE
         }
 
-        viewModel.isVisibleBackButton.observe(this){
-            backButton.visibility =
-                if(it) View.VISIBLE
-                else View.GONE
-        }
-
-        viewModel.currentFragment.observe(this){
+        viewModel.currentFragment.observe(this) {
             supportFragmentManager.commit {
-                replace(R.id.FragmentContainerView, it)
+                replace(binding.FragmentContainerView.id, it)
                 setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                supportFragmentManager.beginTransaction()
                 currentFragment = it as? GameInterface
             }
         }
 
-        viewModel.textOnNextButton.observe(this){
-            nextButton.text = it
-        }
+        viewModel.textOnNextButton.observe(this) { nextButton.text = it }
 
-        nextButton.setOnClickListener {
-            currentFragment?.nextButtonClick()
-        }
+        nextButton.setOnClickListener { currentFragment?.nextButtonClick() }
 
-        backButton.setOnClickListener {
-            currentFragment?.backButtonClick()
-        }
+        backButton.setOnClickListener { currentFragment?.backButtonClick() }
 
-        viewModel.closeActivity.observe(this){
-            if (it) finish()
-        }
+        viewModel.closeActivity.observe(this) { if (it) finish() }
 
-        viewModel.error.observe(this){
-            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
-        }
+        viewModel.error.observe(this) { Toast.makeText(this, it, Toast.LENGTH_LONG).show() }
 
         exitGameWindow = ExitGameWindow(this)
 
         closeButton.setOnClickListener { exitGame() }
 
-        onBackPressedDispatcher.addCallback(this) {
-            exitGame()
-        }
+        onBackPressedDispatcher.addCallback(this) { exitGame() }
 
         helpButton.setOnClickListener {
-        val helpId = viewModel.idForHelpButton
+            val helpId = viewModel.idForHelpButton
             if(helpId == null)
                 Toast.makeText(this, getString(R.string.no_help), Toast.LENGTH_SHORT).show()
             else{
@@ -96,9 +80,7 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
-    private fun exitGame(){
-        if(viewModel.exitWindowText != null)
-            exitGameWindow.showWindow(viewModel.exitWindowText!!)
-        else finish()
+    private fun exitGame() {
+        viewModel.exitWindowText?.let { exitGameWindow.showWindow(it) } ?: finish()
     }
 }

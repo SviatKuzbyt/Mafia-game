@@ -25,20 +25,13 @@ class PlayerPanelRepository(
             if(it.isAlive){
                 val dataAboutRole = getDataAboutRole(it.role)
                 setColorRole(dataAboutRole.color, 1)
-                playerPanelList.add(PlayerPanelData(
-                    it.id,
-                    it.name,
-                    dataAboutRole.icon,
-                    it.role,
-                    dataAboutRole.color,
-                    it.roleName
-                ))
+                playerPanelList.add(fillItem(it, dataAboutRole))
             }
         }
         return playerPanelList
     }
 
-    private fun getDataAboutRole(roleType: Int): DataAboutRole = when(roleType){
+    private fun getDataAboutRole(roleType: Int) = when(roleType){
         PEACEFUL -> DataAboutRole(R.drawable.people_ic, ColorRole.Red)
         MAFIA -> DataAboutRole(R.drawable.gun_ic, ColorRole.Black)
         COMMISSAR -> DataAboutRole(R.drawable.hat_ic, ColorRole.Red)
@@ -57,6 +50,16 @@ class PlayerPanelRepository(
         }
     }
 
+    private fun fillItem(playerData: PlayerData, dataAboutRole: DataAboutRole) =
+        PlayerPanelData(
+            playerData.id,
+            playerData.name,
+            dataAboutRole.icon,
+            playerData.role,
+            dataAboutRole.color,
+            playerData.roleName
+        )
+
     fun editPlayer(player: PlayerPanelData) {
         val isAlive = !player.isSelected
         val count = if(isAlive) 1 else -1
@@ -73,18 +76,20 @@ class PlayerPanelRepository(
         }
     }
 
-    private fun makeResultText(color: ColorRole): String {
-        val role = when(color){
+    private fun makeResultText(color: ColorRole) =
+        "${context.getString(makeWinnerString(color))}\n\n${makeRolesString()}"
+
+    private fun makeRolesString(): String{
+        var roleList = ""
+        gameArray.forEach {roleList += "${it.name} - ${it.roleName}\n"}
+        return roleList
+    }
+
+    private fun makeWinnerString(color: ColorRole): Int{
+        return when(color){
             ColorRole.Red -> R.string.peaceful_win
             ColorRole.Black -> R.string.mafia_win
             else -> R.string.lift_win
         }
-
-        var roleList = ""
-        gameArray.forEach {
-            roleList += "${it.name} - ${it.roleName}\n"
-        }
-
-        return "${context.getString(role)}\n\n$roleList"
     }
 }

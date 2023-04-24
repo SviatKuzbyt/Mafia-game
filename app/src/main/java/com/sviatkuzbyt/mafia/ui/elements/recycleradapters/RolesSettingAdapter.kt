@@ -15,18 +15,11 @@ class RolesSettingAdapter(private var dataSet: Array<Roles>, private val viewMod
     RecyclerView.Adapter<RolesSettingAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val image: ImageView
-        val text: TextView
-        val reduceButton: Button
-        val increaseButton: Button
-        val count: TextView
-        init {
-            image = view.findViewById(R.id.imageRoleSetting)
-            text = view.findViewById(R.id.textRoleSetting)
-            reduceButton = view.findViewById(R.id.reduceButtonRoleSetting)
-            increaseButton = view.findViewById(R.id.increaseButtonRoleSetting)
-            count = view.findViewById(R.id.countRoleSetting)
-        }
+        val image: ImageView = view.findViewById(R.id.imageRoleSetting)
+        val text: TextView = view.findViewById(R.id.textRoleSetting)
+        val reduceButton: Button = view.findViewById(R.id.reduceButtonRoleSetting)
+        val increaseButton: Button = view.findViewById(R.id.increaseButtonRoleSetting)
+        val count: TextView = view.findViewById(R.id.countRoleSetting)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -42,7 +35,6 @@ class RolesSettingAdapter(private var dataSet: Array<Roles>, private val viewMod
 
         viewHolder.increaseButton.setOnClickListener {
             viewModel.changeRole(position, 1)
-
         }
 
         viewHolder.reduceButton.setOnClickListener {
@@ -57,7 +49,7 @@ class RolesSettingAdapter(private var dataSet: Array<Roles>, private val viewMod
         }
 
         dataSet = list
-        notifyItemRangeInserted(0, dataSet.size)
+        notifyDataSetChanged()
     }
     override fun getItemCount() = dataSet.size
     fun changeCount(count: Int, position: Int) {

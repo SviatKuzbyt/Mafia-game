@@ -5,9 +5,11 @@ import java.io.File
 
 class SettingsRepository(private val context: Context): SettingStoreRepository(context) {
     fun clearData(){
-        var file = File(context.filesDir, "arrayGame.txt")
-        file.delete()
-        file = File(context.filesDir, "roleArray.txt")
-        file.delete()
+        val fileArray = arrayOf(
+            File(context.filesDir, "arrayGame.txt"),
+            File(context.filesDir, "roleArray.txt"),
+            File(context.filesDir, "playerList.txt")
+        )
+        fileArray.forEach { it.delete() }
     }
 }

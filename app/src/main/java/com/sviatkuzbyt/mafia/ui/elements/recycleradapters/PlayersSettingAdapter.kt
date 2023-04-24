@@ -13,12 +13,8 @@ class PlayersSettingAdapter(private val dataSet: MutableList<String>, private va
     RecyclerView.Adapter<PlayersSettingAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val editTextPlayers: EditText
-        val editButtonPlayers: Button
-        init {
-            editTextPlayers = view.findViewById(R.id.editTextPlayers)
-            editButtonPlayers = view.findViewById(R.id.editButtonPlayers)
-        }
+        val editTextPlayers: EditText = view.findViewById(R.id.editTextPlayers)
+        val editButtonPlayers: Button = view.findViewById(R.id.editButtonPlayers)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -59,9 +55,8 @@ class PlayersSettingAdapter(private val dataSet: MutableList<String>, private va
             notifyItemRangeRemoved(0, dataSet.size)
             dataSet.clear()
         }
-
         dataSet.addAll(list)
-        notifyItemRangeInserted(0, dataSet.size)
+        notifyDataSetChanged()
     }
 
     override fun getItemCount() = dataSet.size

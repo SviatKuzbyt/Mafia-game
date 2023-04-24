@@ -11,6 +11,15 @@ data class PlayerData(
     var isAlive: Boolean = true
 ) : java.io.Serializable
 
+data class Roles(
+    val name: String,
+    val icon: Int,
+    val min: Int,
+    val max: Int,
+    val roleType: Int,
+    var count: Int = min
+): java.io.Serializable
+
 data class DataAboutRole(
     val icon: Int,
     val color: ColorRole
@@ -31,12 +40,3 @@ data class CardRole(
     val role: String,
     val image: Drawable?
 )
-
-data class Roles(
-    val name: String,
-    val icon: Int,
-    val min: Int,
-    val max: Int,
-    val roleType: Int,
-    var count: Int = min
-): java.io.Serializable
