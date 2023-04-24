@@ -45,14 +45,18 @@ class PlayerPanelAdapter(
         viewHolder.setBackground(if (item.isSelected) R.drawable.select_background else R.color.transparent)
 
         viewHolder.itemView.setOnClickListener {
-            viewModel.updateSelectElement(position, item.isSelected)
-            item.isSelected = !item.isSelected
-            notifyItemChanged(position)
+            selectItem(position, item)
         }
 
         viewHolder.seeRoleButton.setOnClickListener {
             seeRole(position)
         }
+    }
+
+    private fun selectItem(position: Int, item: PlayerPanelData){
+        viewModel.updateSelectElement(position, item.isSelected)
+        item.isSelected = !item.isSelected
+        notifyItemChanged(position)
     }
 
     private fun seeRole(position: Int) {
@@ -67,7 +71,8 @@ class PlayerPanelAdapter(
 
     override fun getItemCount() = dataSet.size
 
-    fun updateList(list: MutableList<PlayerPanelData>) {
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(list: MutableList<PlayerPanelData>) {
         dataSet = list
         notifyDataSetChanged()
     }

@@ -29,6 +29,7 @@ class RolesFragment : Fragment(), GameInterface {
                 requireActivity(),
                 RolesViewModelFactory(requireActivity().application, activityViewModel.gameArray, activityViewModel)
             )[RolesViewModel::class.java]
+
         return binding.root
     }
 
@@ -36,9 +37,8 @@ class RolesFragment : Fragment(), GameInterface {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val displayMetrics = resources.displayMetrics
-        val screenWidth = displayMetrics.widthPixels
-        val cardAnimation = CardAnimation(binding, screenWidth.toFloat())
+        val screenWidth = resources.displayMetrics.widthPixels.toFloat()
+        val cardAnimation = CardAnimation(binding, screenWidth)
 
         viewModel.player.observe(viewLifecycleOwner){
             cardAnimation.playAnimation(it, viewModel.isNextAnimation)

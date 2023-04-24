@@ -15,12 +15,8 @@ class MainMenuAdapter(private val dataSet: Array<MainMenuData>, private val cont
     RecyclerView.Adapter<MainMenuAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val mainMenuIcon: ImageView
-        val mainMenuText: TextView
-        init {
-            mainMenuIcon = view.findViewById(R.id.mainMenuIcon)
-            mainMenuText = view.findViewById(R.id.mainMenuText)
-        }
+        val mainMenuIcon: ImageView  = view.findViewById(R.id.mainMenuIcon)
+        val mainMenuText: TextView = view.findViewById(R.id.mainMenuText)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -43,5 +39,4 @@ class MainMenuAdapter(private val dataSet: Array<MainMenuData>, private val cont
     }
 
     override fun getItemCount() = dataSet.size
-
 }

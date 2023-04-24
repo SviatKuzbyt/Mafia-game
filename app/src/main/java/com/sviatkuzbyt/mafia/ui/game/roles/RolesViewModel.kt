@@ -7,23 +7,19 @@ import com.sviatkuzbyt.mafia.data.game.elements.PlayerData
 import com.sviatkuzbyt.mafia.data.game.repositories.generateCardRolesArray
 
 import com.sviatkuzbyt.mafia.ui.game.activity.GameViewModel
-import kotlinx.coroutines.launch
 
 class RolesViewModel(
     application: Application,
     gameArray: Array<PlayerData>,
     private val activityViewModel: GameViewModel): AndroidViewModel(application) {
 
-    private lateinit var rolesCardArray: Array<CardRole>
+    private val rolesCardArray = generateCardRolesArray(gameArray, application)
     private var arrayIndex = 0
     val player = MutableLiveData<CardRole>()
     var isNextAnimation = true
 
     init {
-        viewModelScope.launch{
-            rolesCardArray = generateCardRolesArray(gameArray, application)
-            setData()
-        }
+        setData()
     }
 
     private fun setData(){

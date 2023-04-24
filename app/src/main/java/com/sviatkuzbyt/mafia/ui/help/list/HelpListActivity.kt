@@ -10,9 +10,9 @@ import com.sviatkuzbyt.mafia.R
 import com.sviatkuzbyt.mafia.ui.elements.recycleradapters.HelpListAdapter
 
 class HelpListActivity : AppCompatActivity() {
-    val buttonCloseList: Button by lazy { findViewById(R.id.buttonCloseList) }
-    val recyclerHelp: RecyclerView by lazy { findViewById(R.id.recyclerHelp) }
-    val viewModel by viewModels<HelpListViewModel>()
+    private val buttonCloseList: Button by lazy { findViewById(R.id.buttonCloseList) }
+    private val recyclerHelp: RecyclerView by lazy { findViewById(R.id.recyclerHelp) }
+    private val viewModel by viewModels<HelpListViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

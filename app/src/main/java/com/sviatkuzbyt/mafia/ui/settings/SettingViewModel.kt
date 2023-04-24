@@ -4,15 +4,16 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.sviatkuzbyt.mafia.R
 import com.sviatkuzbyt.mafia.data.settings.SettingsRepository
 import com.sviatkuzbyt.mafia.ui.elements.SingleLiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class SettingsViewModel(application: Application): AndroidViewModel(application) {
+class SettingsViewModel(private val application: Application): AndroidViewModel(application) {
     val autoPlayer = MutableLiveData<Boolean>()
     val autoWin = MutableLiveData<Boolean>()
-    val error = SingleLiveEvent<String>()
+    val message = SingleLiveEvent<String>()
     private val repository = SettingsRepository(application)
 
     init {
@@ -37,8 +38,9 @@ class SettingsViewModel(application: Application): AndroidViewModel(application)
     fun clearData(){
         try {
             repository.clearData()
+            message.postValue(application.getString(R.string.data_cleared))
         } catch (e: Exception){
-            error.postValue(e.message.toString())
+            message.postValue(e.message.toString())
         }
     }
 }

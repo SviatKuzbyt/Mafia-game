@@ -21,11 +21,8 @@ class CardGestureListener(private val viewModel: RolesViewModel) : GestureDetect
             kotlin.math.abs(diffX) > SWIPE_THRESHOLD &&
             kotlin.math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD
         ) {
-            if (diffX > 0) {
-                viewModel.previousPlayer()
-            } else {
-                viewModel.nextPlayer()
-            }
+            if (diffX > 0) viewModel.previousPlayer()
+            else viewModel.nextPlayer()
             return true
         }
         return false

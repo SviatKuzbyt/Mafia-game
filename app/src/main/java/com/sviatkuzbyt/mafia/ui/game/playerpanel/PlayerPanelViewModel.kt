@@ -31,35 +31,41 @@ class PlayerPanelViewModel(application: Application, gameArray: Array<PlayerData
     fun removeItems(){
         removedItems.clear()
         mode = 1
-        var temp = 0
+        fillRemovedItemsList()
+        removePlayers()
+
+        if (autoWin)
+            repository.matchResult()?.let { activityViewModel.finishGame(it) }
+
+        playerList.value = _playerList
+    }
+
+    private fun fillRemovedItemsList(){
+        var removedElements = 0
         for(i in 0 until _playerList.size){
             if(_playerList[i].isSelected){
-                removedItems.add(i-temp)
-                temp++
+                removedItems.add(i-removedElements)
+                removedElements++
             }
         }
+    }
 
+    private fun removePlayers(){
         removedItems.forEach {
             removedPlayers.add(_playerList[it])
             repository.editPlayer(_playerList[it])
             _playerList.removeAt(it)
         }
-        if (autoWin){
-            val result = repository.matchResult()
-            if(result != null) activityViewModel.finishGame(result)
-        }
-
-        playerList.value = _playerList
     }
 
-    fun getRemovedPlayer(){
+    fun returnRemovedPlayer(){
         if(removedPlayers.isNotEmpty()){
-            val player = removedPlayers.last()
-            player.isSelected = false
+            mode = 2
+            val player = removedPlayers.last().apply { isSelected = false }
             removedPlayers.removeLast()
+
             _playerList.add(player)
             repository.editPlayer(_playerList.last())
-            mode = 2
             playerList.value = _playerList
         }
     }

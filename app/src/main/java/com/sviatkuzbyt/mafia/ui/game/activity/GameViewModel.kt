@@ -11,9 +11,6 @@ import com.sviatkuzbyt.mafia.data.game.elements.FileManager
 import com.sviatkuzbyt.mafia.data.game.elements.PlayerData
 import com.sviatkuzbyt.mafia.ui.elements.SingleLiveEvent
 import com.sviatkuzbyt.mafia.ui.game.InformationFragment
-import com.sviatkuzbyt.mafia.ui.game.playerpanel.PlayerPanelFragment
-import com.sviatkuzbyt.mafia.ui.game.roles.RolesFragment
-import com.sviatkuzbyt.mafia.ui.game.setting.SettingGameFragment
 
 class GameViewModel(private val application: Application, isLoadSaveGame: Boolean): AndroidViewModel(application) {
 
@@ -23,12 +20,14 @@ class GameViewModel(private val application: Application, isLoadSaveGame: Boolea
     val currentFragment = MutableLiveData<Fragment>()
     val closeActivity = SingleLiveEvent<Boolean>()
     val error = SingleLiveEvent<String>()
+
     var exitWindowText: Int? = null
     var idForHelpButton: Int? = null
     var gameArray = arrayOf<PlayerData>()
 
     private var isPlayerPanelStep = false
     private var fileManager = FileManager(application)
+    private var stepArray = getGameStepsArray(application)
 
     init {
         if(isLoadSaveGame) loadGameArray()
@@ -36,78 +35,41 @@ class GameViewModel(private val application: Application, isLoadSaveGame: Boolea
     }
 
     private fun loadGameArray(){
-        val _gameArray = fileManager.readGameArray()
-        if(_gameArray != null){
-            gameArray = _gameArray
+        val array = fileManager.readGameArray()
+        if(array != null){
+            gameArray = array
             setPlayerPanelStep()
         }
         else
             error.value = application.getString(R.string.no_save)
     }
 
-    private fun setSettingGameStep(){
-        setStep(R.string.new_game,
-            false,
-            R.string.setting_game,
-            SettingGameFragment(),
-            R.string.exit_game_description_settings,
-            5)
-    }
-
-    private fun setStep(
-        nextButton: Int,
-        visibleBack: Boolean,
-        label: Int?,
-        fragment: Fragment,
-        exitText: Int?,
-        help: Int?
-    ){
-        textOnNextButton.value = application.getString(nextButton)
-        isVisibleBackButton.value = visibleBack
-        currentFragment.value = fragment
-        toolBarLabel.value =
-            if (label == null) ""
-            else application.getString(label)
-        exitWindowText = exitText
-        idForHelpButton = help
-    }
-
-    fun setStartGameStep(){
-        setStep(R.string.next,
-            false,
-            null,
-            InformationFragment.newInstance(application.getString(R.string.start_game_label), application.getString(R.string.start_game_information), "🚗", false),
-            R.string.exit_game_description_roles,
-            null)
-    }
-
-    fun setGetCardStep(){
-        setStep(R.string.next,
-            true,
-            R.string.roles,
-            RolesFragment(),
-            R.string.exit_game_description_roles,
-            6)
-    }
+    private fun setSettingGameStep(){ setStep(stepArray[0]) }
+    fun setStartGameStep(){ setStep(stepArray[1]) }
+    fun setGetCardStep(){ setStep(stepArray[2]) }
 
     fun setPlayerPanelStep(){
-        setStep(R.string.remove,
-            true,
-            R.string.player_panel,
-            PlayerPanelFragment(),
-            R.string.exit_game_description_game,
-            7)
+        setStep(stepArray[3])
         isPlayerPanelStep = true
     }
 
     fun finishGame(result: String){
-        setStep(R.string.close,
-            false,
-            null,
-            InformationFragment.newInstance(application.getString(R.string.end_game), result, "🎉", true),
-            null,
-            null)
+        stepArray[4].fragment = InformationFragment.newInstance(
+            application.getString(R.string.end_game), result, "🎉", true)
+        setStep(stepArray[4])
         isPlayerPanelStep = false
+    }
+
+    private fun setStep(gameStep: GameStep){
+        textOnNextButton.value = application.getString(gameStep.nextButton)
+        isVisibleBackButton.value = gameStep.visibleBack
+        currentFragment.value = gameStep.fragment
+
+        toolBarLabel.value = if (gameStep.label == null) ""
+            else application.getString(gameStep.label)
+
+        exitWindowText = gameStep.exitText
+        idForHelpButton = gameStep.help
     }
 
     fun closeActivity(){

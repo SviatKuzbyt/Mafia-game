@@ -1,7 +1,6 @@
 package com.sviatkuzbyt.mafia.ui.game.setting
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -26,67 +25,75 @@ class SettingGameViewModel(application: Application): AndroidViewModel(applicati
     private lateinit var _playersList: MutableList<String>
     private val countLabel = application.getString(R.string.players_count)
     private val playerLabel = application.getString(R.string.player)
+    var roleCount = 0
+    var targetRolePositionChange = 0
+
     var playersChangeMode: RecycleChangeMode = RecycleChangeMode.LoadAll
     val rolesArray = MutableLiveData<Array<Roles>>()
     val playersList = MutableLiveData<MutableList<String>>()
     val error = SingleLiveEvent<String>()
-    private var roleCount = 0
     val playersCount = MutableLiveData<String>()
     var rolesChangeMode: RecycleChangeMode = RecycleChangeMode.LoadAll
-    private var rolePosition = 0
 
     init {
         viewModelScope.launch{
             autoPlayers = SettingStoreRepository(application).getAutoPlayer()
             repository = SettingGameRepository(application, autoPlayers)
-            _rolesArray = repository.getBasicRolesArray()
-            _playersList = repository.getBasicPlayersList()
-            rolesArray.postValue(_rolesArray)
-            playersList.postValue(_playersList)
+            setLists()
+
             roleCount = _playersList.size
             playersCount.postValue("$countLabel $roleCount")
-            rolePosition = _playersList.size
+            targetRolePositionChange = _playersList.size
         }
+    }
+
+    private fun setLists(){
+        _rolesArray = repository.getBasicRolesArray()
+        rolesArray.postValue(_rolesArray)
+
+        _playersList = repository.getBasicPlayersList()
+        playersList.postValue(_playersList)
     }
 
     fun changeRole(position: Int, delta: Int){
-        roleCount = _rolesArray[position].count + delta
-
-        if (canAddMore(position)){
-            playersChangeMode = if(delta > 0){
-                _playersList.add(if(autoPlayers) "$playerLabel ${_playersList.size+1}" else "")
-                RecycleChangeMode.AddItem
-            } else{
-                _playersList.removeLast()
-                RecycleChangeMode.RemoveItem
-            }
+        if (canAddMore(position, delta)){
+            roleCount += delta
             _rolesArray[position].count = roleCount
-            rolePosition = position
-            playersCount.value = "$countLabel ${_playersList.size}"
+            targetRolePositionChange = position
 
-            rolesChangeMode = RecycleChangeMode.ChangeCount
-            playersList.value = _playersList
-            rolesArray.value = _rolesArray
+            changePlayersCount(delta)
+            publishData(delta)
         }
     }
 
-    fun getCount() = roleCount
+    private fun canAddMore(position: Int, delta: Int): Boolean{
+        val count = roleCount + delta
+        return count <= _rolesArray[position].max && count >= _rolesArray[position].min
+    }
 
-    private fun canAddMore(position: Int): Boolean{
-        return roleCount <= _rolesArray[position].max && roleCount >= _rolesArray[position].min
+    private fun changePlayersCount(delta: Int){
+        if(delta > 0)
+            _playersList.add(if(autoPlayers) "$playerLabel ${_playersList.size+1}" else "")
+        else
+            _playersList.removeLast()
+    }
+
+    private fun publishData(delta: Int){
+        playersChangeMode = if(delta > 0) RecycleChangeMode.AddItem
+                            else RecycleChangeMode.RemoveItem
+        rolesChangeMode = RecycleChangeMode.ChangeCount
+
+        playersCount.value = "$countLabel ${_playersList.size}"
+        playersList.value = _playersList
+        rolesArray.value = _rolesArray
     }
 
     fun changePlayerName(position: Int, name: String) {
-        if (position in 0 until _playersList.size) {
+        if (position in 0 until _playersList.size)
             _playersList[position] = name
-        } else {
-            Log.e("changePlayerName","Error: Invalid position")
-        }
     }
 
     fun createGameList() = repository.getGameList(_rolesArray, _playersList)
-
-    fun getPosition() = rolePosition
 
     override fun onCleared() {
         super.onCleared()

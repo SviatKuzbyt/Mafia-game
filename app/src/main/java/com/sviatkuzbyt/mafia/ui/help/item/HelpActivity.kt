@@ -9,9 +9,9 @@ import com.sviatkuzbyt.mafia.R
 
 class HelpActivity : AppCompatActivity() {
 
-    val buttonCloseHelp: Button by lazy { findViewById(R.id.buttonCloseHelp) }
-    val helpName: TextView by lazy { findViewById(R.id.helpName) }
-    val helpText: TextView by lazy { findViewById(R.id.helpText) }
+    private val buttonCloseHelp: Button by lazy { findViewById(R.id.buttonCloseHelp) }
+    private val helpName: TextView by lazy { findViewById(R.id.helpName) }
+    private val helpText: TextView by lazy { findViewById(R.id.helpText) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

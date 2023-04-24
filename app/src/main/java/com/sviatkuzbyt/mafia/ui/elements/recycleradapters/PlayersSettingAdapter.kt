@@ -1,5 +1,6 @@
 package com.sviatkuzbyt.mafia.ui.elements.recycleradapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,11 +51,8 @@ class PlayersSettingAdapter(private val dataSet: MutableList<String>, private va
         }
     }
 
-    fun addAll(list: MutableList<String>){
-        if(dataSet.size > 0){
-            notifyItemRangeRemoved(0, dataSet.size)
-            dataSet.clear()
-        }
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(list: MutableList<String>){
         dataSet.addAll(list)
         notifyDataSetChanged()
     }

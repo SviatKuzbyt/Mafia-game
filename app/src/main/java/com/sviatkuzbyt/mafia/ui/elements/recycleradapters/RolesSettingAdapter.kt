@@ -1,5 +1,6 @@
 package com.sviatkuzbyt.mafia.ui.elements.recycleradapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,15 +40,11 @@ class RolesSettingAdapter(private var dataSet: Array<Roles>, private val viewMod
 
         viewHolder.reduceButton.setOnClickListener {
             viewModel.changeRole(position, -1)
-
         }
     }
 
-    fun addAll(list: Array<Roles>){
-        if(dataSet.isNotEmpty()){
-            notifyItemRangeRemoved(0, dataSet.size)
-        }
-
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(list: Array<Roles>){
         dataSet = list
         notifyDataSetChanged()
     }

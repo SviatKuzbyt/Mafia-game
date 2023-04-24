@@ -19,7 +19,6 @@ class PlayerPanelFragment : Fragment(), GameInterface {
     private val binding get() = _binding!!
     private lateinit var viewModel: PlayerPanelViewModel
     private val activityViewModel by activityViewModels<GameViewModel>()
-    private lateinit var adapter: PlayerPanelAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,21 +29,20 @@ class PlayerPanelFragment : Fragment(), GameInterface {
             ViewModelProvider(requireActivity(),
                 PlayerPanelViewModelFactory(requireActivity().application, activityViewModel.gameArray, activityViewModel)
             )[PlayerPanelViewModel::class.java]
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.playerPanelRecycler.layoutManager = LinearLayoutManager(activity)
-        adapter = PlayerPanelAdapter(mutableListOf(), viewModel, requireContext())
+        val adapter = PlayerPanelAdapter(mutableListOf(), viewModel, requireContext())
         binding.playerPanelRecycler.adapter = adapter
 
         viewModel.playerList.observe(viewLifecycleOwner){
-
             when(viewModel.mode){
-                0 ->{
-                    adapter.updateList(it)
-                }
+                0 -> adapter.setData(it)
                 1 -> adapter.removeItems(viewModel.removedItems)
                 2 -> adapter.addPlayer()
             }
@@ -57,7 +55,7 @@ class PlayerPanelFragment : Fragment(), GameInterface {
     }
 
     override fun backButtonClick() {
-        viewModel.getRemovedPlayer()
+        viewModel.returnRemovedPlayer()
     }
 
     override fun onDestroyView() {

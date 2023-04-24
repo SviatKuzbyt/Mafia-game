@@ -10,9 +10,7 @@ import com.sviatkuzbyt.mafia.databinding.FragmentInformationBinding
 import com.sviatkuzbyt.mafia.ui.game.activity.GameViewModel
 import com.sviatkuzbyt.mafia.ui.elements.GameInterface
 
-
 class InformationFragment : Fragment(), GameInterface {
-
     private val activityViewModel by activityViewModels<GameViewModel>()
     private var _binding: FragmentInformationBinding? = null
     private val binding get() = _binding!!
@@ -23,13 +21,6 @@ class InformationFragment : Fragment(), GameInterface {
     ): View {
         _binding = FragmentInformationBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.emojiTextView.text = arguments?.getString("emoji")
-        binding.labelTextView.text = arguments?.getString("label")
-        binding.informationTextView.text = arguments?.getString("information")
     }
 
     companion object {
@@ -45,12 +36,17 @@ class InformationFragment : Fragment(), GameInterface {
         }
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.emojiTextView.text = arguments?.getString("emoji")
+        binding.labelTextView.text = arguments?.getString("label")
+        binding.informationTextView.text = arguments?.getString("information")
+    }
+
     override fun nextButtonClick() {
         if (arguments?.getBoolean("isFinish") == true) activityViewModel.closeActivity()
         else activityViewModel.setGetCardStep()
     }
-
-    override fun backButtonClick() {}
 
     override fun onDestroyView() {
         super.onDestroyView()
