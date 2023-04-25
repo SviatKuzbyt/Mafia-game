@@ -56,7 +56,7 @@ class SettingGameFragment : Fragment(), GameInterface {
         viewModel.rolesArray.observe(viewLifecycleOwner){
             when(viewModel.rolesChangeMode){
                 RecycleChangeMode.LoadAll -> rolesSettingAdapter.setData(it)
-                else -> rolesSettingAdapter.changeCount(viewModel.roleCount, viewModel.targetRolePositionChange)
+                else -> rolesSettingAdapter.changeCount(viewModel.targetRolePositionChange)
             }
             viewModel.rolesChangeMode = RecycleChangeMode.LoadAll
         }

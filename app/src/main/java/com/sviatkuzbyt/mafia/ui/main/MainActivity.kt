@@ -3,9 +3,13 @@ package com.sviatkuzbyt.mafia.ui.main
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ViewGroup
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,5 +31,13 @@ class MainActivity : AppCompatActivity() {
         val mainMenuRecycler = findViewById<RecyclerView>(R.id.mainMenuRecycler)
         mainMenuRecycler.layoutManager = LinearLayoutManager(this)
         mainMenuRecycler.adapter = MainMenuAdapter(getMenuArray(this), this)
+
+        ViewCompat.setOnApplyWindowInsetsListener(mainMenuRecycler) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.updateLayoutParams<ViewGroup.MarginLayoutParams>{
+                bottomMargin = insets.bottom+32
+            }
+            WindowInsetsCompat.CONSUMED
+        }
     }
 }

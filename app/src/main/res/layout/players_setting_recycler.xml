@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
@@ -8,15 +9,19 @@
         android:id="@+id/editTextPlayers"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:background="@color/transparent"
+        android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:layout_gravity="center_vertical"/>
+        android:background="@color/transparent"
+        android:ems="10"
+        android:hint="@string/enter_name"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/editButtonPlayers"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:background="@drawable/clean_ic"/>
+        android:background="@drawable/clean_ic"
+        android:contentDescription="@string/remove"/>
 </LinearLayout>

@@ -49,8 +49,7 @@ class RolesSettingAdapter(private var dataSet: Array<Roles>, private val viewMod
         notifyDataSetChanged()
     }
     override fun getItemCount() = dataSet.size
-    fun changeCount(count: Int, position: Int) {
-        dataSet[position].count = count
+    fun changeCount(position: Int) {
         notifyItemChanged(position)
     }
 }

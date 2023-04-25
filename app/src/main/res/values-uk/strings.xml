@@ -41,4 +41,13 @@
     <string name="exit_game_description_game">Гра збережеться (список живих гравців) і ви зможете повернутися до неї пізніше</string>
     <string name="yes">Так</string>
     <string name="no">Ні</string>
+    <string name="auto_fill">Заповнювати імена гравців автоматично</string>
+    <string name="auto_win">Автоматично визначати переможця гри</string>
+    <string name="clear_data">Видалити дані</string>
+    <string name="about_label">Про програму</string>
+    <string name="about_text">Додаток \"Мафія\" - демостраційний, не комерційний додаток розроблений Sviat Kuzbyt у квітні 2023\\n\\nGitHub\\nІконки\\nЗображення ролей</string>
+    <string name="warning">Увага</string>
+    <string name="confirm_clear_data">"Ви дійсно хочете видалити останню збережену гру та останні збережені параметри? "</string>
+    <string name="data_cleared">Дані успішно видалено</string>
+    <string name="enter_name">Введіть ім\'я</string>
 </resources>

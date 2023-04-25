@@ -47,10 +47,12 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/red_button_background"
+        android:elevation="0dp"
+        android:textAppearance="@style/white_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/backButton"
-        android:textAppearance="@style/white_bold"/>
+        tools:ignore="SpeakableTextPresentCheck,VisualLintButtonSize" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/backButton"

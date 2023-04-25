@@ -58,7 +58,7 @@ class SettingGameViewModel(application: Application): AndroidViewModel(applicati
     fun changeRole(position: Int, delta: Int){
         if (canAddMore(position, delta)){
             roleCount += delta
-            _rolesArray[position].count = roleCount
+            _rolesArray[position].count += delta
             targetRolePositionChange = position
 
             changePlayersCount(delta)
@@ -67,7 +67,7 @@ class SettingGameViewModel(application: Application): AndroidViewModel(applicati
     }
 
     private fun canAddMore(position: Int, delta: Int): Boolean{
-        val count = roleCount + delta
+        val count = _rolesArray[position].count + delta
         return count <= _rolesArray[position].max && count >= _rolesArray[position].min
     }
 
