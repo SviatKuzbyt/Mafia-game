@@ -45,7 +45,7 @@
     <string name="auto_win">Automatically determine the winner of the game</string>
     <string name="clear_data">Delete Data</string>
     <string name="about_label">About the program</string>
-    <string name="about_text">Application \"Mafia\" - a demostrational, non-commercial application developed by Sviat Kuzbyt in April 2023\\n\\nGitHub\\nIcons\\nRole images</string>
+    <string name="about_text">Application "Mafia" - a demostrational, non-commercial application developed by Sviat Kuzbyt in April 2023\n\n<a href="https://github.com/SviatKuzbyt/Mafia-game">GitHub</a>\n<a href="https://www.flaticon.com/">Icons</a>\n<a href="https://www.freepik.com/free-vector/mafia-flat-set-gangster-characters-women-dressed-fashion-30s-20th-century-vector-illustration_35861689.htm#query=mafia%20game%20cast&amp;position=4&amp;from_view=search&amp;track=ais">Roles images</a></string>
     <string name="warning">Look out</string>
     <string name="confirm_clear_data">Are you sure you want to delete the last saved game and the last saved settings?</string>
     <string name="data_cleared">Data deleted successfully</string>

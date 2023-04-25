@@ -45,7 +45,7 @@
     <string name="auto_win">Автоматично визначати переможця гри</string>
     <string name="clear_data">Видалити дані</string>
     <string name="about_label">Про програму</string>
-    <string name="about_text">Додаток \"Мафія\" - демостраційний, не комерційний додаток розроблений Sviat Kuzbyt у квітні 2023\\n\\nGitHub\\nІконки\\nЗображення ролей</string>
+    <string name="about_text">Додаток "Мафія" - демостраційний, не комерційний додаток розроблений Sviat Kuzbyt у квітні 2023\n\n<a href="https://github.com/SviatKuzbyt/Mafia-game">GitHub</a>\n<a href="https://www.flaticon.com/">Іконки</a>\n<a href="https://www.freepik.com/free-vector/mafia-flat-set-gangster-characters-women-dressed-fashion-30s-20th-century-vector-illustration_35861689.htm#query=mafia%20game%20cast&amp;position=4&amp;from_view=search&amp;track=ais">Зображення ролей</a></string>
     <string name="warning">Увага</string>
     <string name="confirm_clear_data">"Ви дійсно хочете видалити останню збережену гру та останні збережені параметри? "</string>
     <string name="data_cleared">Дані успішно видалено</string>
