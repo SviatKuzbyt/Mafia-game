@@ -20,6 +20,7 @@ sealed class RecycleChangeMode{
 
 class SettingGameViewModel(application: Application): AndroidViewModel(application) {
     private lateinit var repository: SettingGameRepository
+    private val settingRepository = SettingStoreRepository(application)
     private var autoPlayers = false
     private lateinit var _rolesArray: Array<Roles>
     private lateinit var _playersList: MutableList<String>
@@ -34,11 +35,13 @@ class SettingGameViewModel(application: Application): AndroidViewModel(applicati
     val error = SingleLiveEvent<String>()
     val playersCount = MutableLiveData<String>()
     var rolesChangeMode: RecycleChangeMode = RecycleChangeMode.LoadAll
+    var rolesLang = 1
 
     init {
         viewModelScope.launch{
-            autoPlayers = SettingStoreRepository(application).getAutoPlayer()
-            repository = SettingGameRepository(application, autoPlayers)
+            rolesLang = settingRepository.getRoleLanguage()
+            autoPlayers = settingRepository.getAutoPlayer()
+            repository = SettingGameRepository(application, autoPlayers, rolesLang)
             setLists()
 
             roleCount = _playersList.size

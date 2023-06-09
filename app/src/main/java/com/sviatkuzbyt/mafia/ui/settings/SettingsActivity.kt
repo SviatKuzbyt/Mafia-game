@@ -3,10 +3,9 @@ package com.sviatkuzbyt.mafia.ui.settings
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.TextView
-import android.widget.Toast
+import android.util.Log
+import android.view.View
+import android.widget.*
 import androidx.activity.viewModels
 import com.sviatkuzbyt.mafia.R
 import com.sviatkuzbyt.mafia.ui.elements.alertwindow.RemoveDataWindow
@@ -21,6 +20,7 @@ class SettingsActivity : AppCompatActivity() {
     private val buttonClearData: Button by lazy { findViewById(R.id.buttonClearData) }
     private val closeButtonSettings: Button by lazy { findViewById(R.id.closeButtonSettings) }
     private val textAbout: TextView by lazy { findViewById(R.id.textAbout) }
+    private val spinnerRolesLang: Spinner by lazy { findViewById(R.id.spinnerRolesLang) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +51,19 @@ class SettingsActivity : AppCompatActivity() {
 
         closeButtonSettings.setOnClickListener { finish() }
         textAbout.movementMethod = LinkMovementMethod.getInstance()
+
+        viewModel.roleLanguage.observe(this){
+            spinnerRolesLang.setSelection(it, false)
+        }
+
+        spinnerRolesLang.setSelection(0, false)
+        spinnerRolesLang.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long){
+                viewModel.setRoleLanguage(p2)
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
+        }
     }
 
     private fun initRemoveDataWindow(){

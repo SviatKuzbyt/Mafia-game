@@ -1,6 +1,7 @@
 package com.sviatkuzbyt.mafia.ui.elements.recycleradapters
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +11,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sviatkuzbyt.mafia.R
 import com.sviatkuzbyt.mafia.data.game.elements.Roles
+import com.sviatkuzbyt.mafia.data.game.elements.getLocaleStringResource
 import com.sviatkuzbyt.mafia.ui.game.setting.SettingGameViewModel
 
-class RolesSettingAdapter(private var dataSet: Array<Roles>, private val viewModel: SettingGameViewModel) :
+class RolesSettingAdapter(private var context: Context, private var dataSet: Array<Roles>, private val viewModel: SettingGameViewModel) :
     RecyclerView.Adapter<RolesSettingAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -31,7 +33,7 @@ class RolesSettingAdapter(private var dataSet: Array<Roles>, private val viewMod
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.image.setImageResource(dataSet[position].icon)
-        viewHolder.text.text = dataSet[position].name
+        viewHolder.text.text = context.getLocaleStringResource(viewModel.rolesLang, dataSet[position].name)
         viewHolder.count.text = dataSet[position].count.toString()
 
         viewHolder.increaseButton.setOnClickListener {

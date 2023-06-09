@@ -1,10 +1,11 @@
 package com.sviatkuzbyt.mafia.data.game.repositories
 
 import android.content.Context
+import android.util.Log
 import com.sviatkuzbyt.mafia.R
 import com.sviatkuzbyt.mafia.data.game.elements.*
 
-class SettingGameRepository(private val context: Context, private val autoPlayers: Boolean) {
+class SettingGameRepository(private val context: Context, private val autoPlayers: Boolean, private val roleLang: Int) {
     private val fileManager = FileManager(context)
     private var rolesArray = arrayOf<Roles>()
     private var playersList = mutableListOf<String>()
@@ -17,14 +18,14 @@ class SettingGameRepository(private val context: Context, private val autoPlayer
     }
 
     private fun getBasicRoleArray() = arrayOf(
-        Roles(context.getString(R.string.mafia), R.drawable.gun_ic, 1, 5, MAFIA),
-        Roles(context.getString(R.string.commissar), R.drawable.hat_ic, 1, 1, COMMISSAR),
-        Roles(context.getString(R.string.doctor), R.drawable.plus_ic, 0, 1, DOCTOR),
-        Roles(context.getString(R.string.peaceful), R.drawable.people_ic, 3, 10, PEACEFUL),
-        Roles(context.getString(R.string.putana), R.drawable.lips_ic, 0, 1, PUTANA),
-        Roles(context.getString(R.string.don), R.drawable.red_hat_ic, 0, 1, DON),
-        Roles(context.getString(R.string.lift), R.drawable.knife_ic, 0, 1, LIFT),
-        Roles(context.getString(R.string.immortal), R.drawable.bird_ic, 0, 1, IMMORTAL)
+        Roles(R.string.mafia, R.drawable.gun_ic, 1, 5, MAFIA),
+        Roles(R.string.commissar, R.drawable.hat_ic, 1, 1, COMMISSAR),
+        Roles(R.string.doctor, R.drawable.plus_ic, 0, 1, DOCTOR),
+        Roles(R.string.peaceful, R.drawable.people_ic, 3, 10, PEACEFUL),
+        Roles(R.string.putana, R.drawable.lips_ic, 0, 1, PUTANA),
+        Roles(R.string.don, R.drawable.red_hat_ic, 0, 1, DON),
+        Roles(R.string.lift, R.drawable.knife_ic, 0, 1, LIFT),
+        Roles(R.string.immortal, R.drawable.bird_ic, 0, 1, IMMORTAL)
     )
 
     private fun getBasicPlayerList(): MutableList<String>{
@@ -57,7 +58,8 @@ class SettingGameRepository(private val context: Context, private val autoPlayer
             LIFT -> R.string.lift
             else -> R.string.immortal
         }
-        return context.getString(roleId)
+
+        return context.getLocaleStringResource(roleLang, roleId)
     }
 
     fun saveData(_rolesArray: Array<Roles>, _playersList: MutableList<String>){

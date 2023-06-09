@@ -12,7 +12,7 @@ data class PlayerData(
 ) : java.io.Serializable
 
 data class Roles(
-    val name: String,
+    val name: Int,
     val icon: Int,
     val min: Int,
     val max: Int,

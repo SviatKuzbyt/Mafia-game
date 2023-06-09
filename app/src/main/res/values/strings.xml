@@ -50,4 +50,15 @@
     <string name="confirm_clear_data">Are you sure you want to delete the last saved game and the last saved settings?</string>
     <string name="data_cleared">Data deleted successfully</string>
     <string name="enter_name">Enter a name</string>
+
+    <string name="role_lang">Language of roles</string>
+    <string name="system">System</string>
+    <string name="ua" translatable="false">Українська</string>
+    <string name="en" translatable="false" >English</string>
+
+    <string-array name="role_languages">
+        <item>@string/system</item>
+        <item>@string/ua</item>
+        <item>@string/en</item>
+    </string-array>
 </resources>

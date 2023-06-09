@@ -18,6 +18,7 @@ class RolesViewModel(
     val player = MutableLiveData<CardRole>()
     var isNextAnimation = true
 
+
     init {
         setData()
     }

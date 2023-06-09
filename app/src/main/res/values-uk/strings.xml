@@ -50,4 +50,6 @@
     <string name="confirm_clear_data">"Ви дійсно хочете видалити останню збережену гру та останні збережені параметри? "</string>
     <string name="data_cleared">Дані успішно видалено</string>
     <string name="enter_name">Введіть ім\'я</string>
+    <string name="role_lang">Мова ролей</string>
+    <string name="system">Система</string>
 </resources>

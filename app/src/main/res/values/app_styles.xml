@@ -53,6 +53,11 @@
         <item name="android:textColor">?colorOnSecondary</item>
         <item name="android:textSize">24sp</item>
     </style>
+    <style name="blue_text">
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">?colorSecondary</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 
     <attr name="windowColor" format="color"/>
 </resources>

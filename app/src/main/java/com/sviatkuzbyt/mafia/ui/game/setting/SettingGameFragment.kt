@@ -50,7 +50,7 @@ class SettingGameFragment : Fragment(), GameInterface {
 
     private fun setRolesArray(){
         binding.rolesSettingRecycler.layoutManager = LinearLayoutManager(activity)
-        rolesSettingAdapter = RolesSettingAdapter(arrayOf(), viewModel)
+        rolesSettingAdapter = RolesSettingAdapter(requireContext(), arrayOf(), viewModel)
         binding.rolesSettingRecycler.adapter = rolesSettingAdapter
 
         viewModel.rolesArray.observe(viewLifecycleOwner){

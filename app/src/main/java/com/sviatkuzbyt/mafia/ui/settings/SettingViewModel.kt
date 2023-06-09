@@ -14,12 +14,14 @@ class SettingsViewModel(private val application: Application): AndroidViewModel(
     val autoPlayer = MutableLiveData<Boolean>()
     val autoWin = MutableLiveData<Boolean>()
     val message = SingleLiveEvent<String>()
+    val roleLanguage = SingleLiveEvent<Int>()
     private val repository = SettingsRepository(application)
 
     init {
         viewModelScope.launch(Dispatchers.IO){
             autoPlayer.postValue(repository.getAutoPlayer())
             autoWin.postValue(repository.getAutoWin())
+            roleLanguage.postValue(repository.getRoleLanguage())
         }
     }
 
@@ -32,6 +34,12 @@ class SettingsViewModel(private val application: Application): AndroidViewModel(
     fun setAutoWin(param: Boolean){
         viewModelScope.launch(Dispatchers.IO){
             repository.setAutoWin(param)
+        }
+    }
+
+    fun setRoleLanguage(param: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.setRoleLanguage(param)
         }
     }
 
